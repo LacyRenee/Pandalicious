@@ -25,9 +25,9 @@
                     <div class="form-group">
                         <div class="row">
                             <label class="col-lg-1 col-md-1" style="font-weight:bold;">Servings:</label>
-                            <input class="col-lg-1 col-md-1" type="number" min="0" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            <input name="RecipeServings" class="col-lg-1 col-md-1" type="number" min="0" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                             <label class="col-lg-1 col-md-1" style="font-weight:bold;">Duration: </label>
-                            <input class="col-lg-2 col-md-2" placeholder="Enter recipe time" type="text" />
+                            <input name="RecipeDuration" class="col-lg-2 col-md-2" placeholder="Enter recipe time" type="text" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,8 +36,8 @@
                         </div>
                         <div id="IngredientView0" class="row">
                             <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                            <input class="col-lg-1 col-md-1 col-sm-1" placeholder="Unit" type="number" min="0" /> &nbsp;
-                            <select id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
+                            <input name="RecipeValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
+                            <select name="RecipeUnit" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
                                 <option value="">--</option>
                                 <optgroup label="Volume">
                                     @foreach (var u in UnitsOfMeasurement.UnitsVolume)
@@ -52,7 +52,7 @@
                                     }
                                 </optgroup>
                             </select>
-                            <input class="col-lg-3 col-md-3 col-sm-3" list="ListOfIngredients" placeholder="Find ingredient" type="text" /> &nbsp;
+                            <input name="IngredientName" class="col-lg-3 col-md-3 col-sm-3" list="ListOfIngredients" placeholder="Find ingredient" type="text" /> &nbsp;
                             <button id="ButtonId0" type="button" class="genric-btn success-border AddIngredient">Add</button>
                             <datalist id="ListOfIngredients"></datalist>
                         </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div id="DirectionView0" class="row">
                             <label class="col-lg-1 col-md-1 col-sm-1">Step <span class="directionCount">1</span>:</label>
-                            <textarea id="DirectionsTextArea" class="col-lg-5 col-md-5 col-sm-12" rows="2" cols="10" placeholder="Input directions"></textarea> &nbsp;
+                            <textarea name="RecipeDirection" id="DirectionsTextArea" class="col-lg-5 col-md-5 col-sm-12" rows="2" cols="10" placeholder="Input directions"></textarea> &nbsp;
                             <button id="DirectionBtnID0" type="button" class="genric-btn success-border AddDirection">Add</button>
                         </div>
                         <div id="directionTemplate"></div>
@@ -80,7 +80,7 @@
                                     <div class="col-lg-1 col-md-1 col-sm-1"></div>
                                     <div class="col-lg-2 col-md-6 col-sm-12">
                                         <label> @t</label>
-                                        <input class="checkbox-primary input" type="checkbox">
+                                        <input name="RecipeTag" class="checkbox-primary input" type="checkbox">
                                     </div>
                                 }
                             }
@@ -106,8 +106,8 @@
     <script id="IngredientHandlebar" type="text/x-handlebars-template">
         <div id="{{divID}}" class="row">
             <div class="col-lg-1 col-md-1 col-sm-1"></div>
-            <input class="col-lg-1 col-md-1 col-sm-1" placeholder="Unit" type="number" min="0" /> &nbsp;
-            <select id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
+            <input name="IngredientValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
+            <select name="IngredientName" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
                 <option value="">--</option>
                 <optgroup label="Volume">
                     @foreach (var u in UnitsOfMeasurement.UnitsVolume)
@@ -122,7 +122,7 @@
                     }
                 </optgroup>
             </select>
-            <input class="col-lg-3 col-md-3 col-sm-3" list="ListOfIngredients" placeholder="Find ingredient" type="text" /> &nbsp;
+            <input name="IngredientName" class="col-lg-3 col-md-3 col-sm-3" list="ListOfIngredients" placeholder="Find ingredient" type="text" /> &nbsp;
             <button id="{{buttonID}}" type="button" class="genric-btn success-border AddIngredient">Add</button>
         </div>
     </script>
