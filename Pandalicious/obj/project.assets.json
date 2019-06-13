@@ -13277,11 +13277,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ltesdall/Projects/Pandalicious/Pandalicious/Pandalicious.csproj",
+      "projectUniqueName": "/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/Pandalicious.csproj",
       "projectName": "Pandalicious",
-      "projectPath": "/Users/ltesdall/Projects/Pandalicious/Pandalicious/Pandalicious.csproj",
+      "projectPath": "/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/Pandalicious.csproj",
       "packagesPath": "/Users/ltesdall/.nuget/packages/",
-      "outputPath": "/Users/ltesdall/Projects/Pandalicious/Pandalicious/obj/",
+      "outputPath": "/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

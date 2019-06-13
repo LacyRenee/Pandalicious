@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pandalicious.Migrations
 {
@@ -30,7 +29,7 @@ namespace Pandalicious.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     RecipeName = table.Column<string>(nullable: true),
                     RecipeServings = table.Column<int>(nullable: false),
-                    RecipeDuration = table.Column<DateTime>(nullable: false),
+                    RecipeDuration = table.Column<string>(nullable: true),
                     RecipeDirections = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

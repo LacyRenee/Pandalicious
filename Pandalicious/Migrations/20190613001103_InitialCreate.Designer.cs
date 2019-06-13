@@ -9,8 +9,8 @@ using Pandalicious.Models;
 namespace Pandalicious.Migrations
 {
     [DbContext(typeof(Model.PandaliciousContext))]
-    [Migration("20190606001650_UpdateRecipeModel")]
-    partial class UpdateRecipeModel
+    [Migration("20190613001103_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,7 +62,7 @@ namespace Pandalicious.Migrations
 
                     b.Property<string>("RecipeDirections");
 
-                    b.Property<DateTime>("RecipeDuration");
+                    b.Property<string>("RecipeDuration");
 
                     b.Property<string>("RecipeName");
 

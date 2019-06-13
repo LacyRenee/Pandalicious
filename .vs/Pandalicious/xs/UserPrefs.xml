@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{1DC062E5-3DE4-4974-AACC-27D3DA8B021C}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pandalicious/wwwroot/js/Recipe.js">
+    <Files>
+      <File FileName="Pandalicious/Views/Recipe/NewRecipe.cshtml" Line="106" Column="36" />
+      <File FileName="Pandalicious/wwwroot/js/Recipe.js" Line="61" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Pandalicious" expanded="True">
+            <Node name="Pandalicious" expanded="True">
+              <Node name="APIs" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Handlebars" expanded="True" />
+                <Node name="Home" expanded="True" />
+                <Node name="Recipe" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
+                <Node name="js" expanded="True">
+                  <Node name="Recipe.js" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Pandalicious PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

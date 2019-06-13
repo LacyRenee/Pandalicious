@@ -60,7 +60,7 @@ namespace Pandalicious.Migrations
 
                     b.Property<string>("RecipeDirections");
 
-                    b.Property<DateTime>("RecipeDuration");
+                    b.Property<string>("RecipeDuration");
 
                     b.Property<string>("RecipeName");
 

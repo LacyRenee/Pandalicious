@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Pandalicious.Models;
 using static Pandalicious.Models.Model;
 
 namespace Pandalicious.Controllers

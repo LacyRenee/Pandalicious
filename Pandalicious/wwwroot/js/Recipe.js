@@ -1,5 +1,77 @@
 ﻿var IngredientViewCount = 0;
+var DirectionViewCount = 0;
 
+
+$("a#FinishRecipe").click(function () {
+  console.log( $("#RecipeForm").serializeArray());
+})
+
+
+
+
+
+
+
+
+
+
+// Populates the DataList with all of the ingredients from the database
+$(document).ready(function () {
+   $.ajax({
+        url: "/api/Recipe/IngredientList/",
+        type: "GET",
+        success: function (ingredientList) {
+           var list = document.getElementById("ListOfIngredients");
+
+            ingredientList.forEach(function(item){
+               var option = document.createElement('option');
+               option.value = item.IngredientName;
+               list.appendChild(option);
+            });
+        }
+    })
+})
+
+// Adds a direction template to the form
+$(document).on("click", ".AddDirection", function(){
+    DirectionViewCount++;
+    var divID = "DirectionView"+ DirectionViewCount;
+    var buttonID = "DirectionBtnID" + DirectionViewCount;
+    console.log("I'm in: " + divID + " " + buttonID);
+
+    // Retrieve the template data from the HTML (jQuery is used here).
+    var template = $("#DirectionHandlebar").html();
+
+    // Compile the template data into a function
+    var templateScript = Handlebars.compile(template);
+
+    // Create the content
+    var context = {DirectionDivID: divID, DirectionBtnID: buttonID};
+
+    var html = templateScript(context);
+
+    // Insert the HTML code into the page
+    $("#directionTemplate").append(html);
+
+    // Change the previous ingredient button to remove
+    document.getElementById("DirectionBtnID" + (DirectionViewCount - 1)).innerHTML = "Remove";
+    document.getElementById("DirectionBtnID" + (DirectionViewCount - 1)).classList.remove("success-border");
+    document.getElementById("DirectionBtnID" + (DirectionViewCount - 1)).classList.add("danger-border");
+    document.getElementById("DirectionBtnID" + (DirectionViewCount - 1)).classList.remove("AddDirection");
+    document.getElementById("DirectionBtnID" + (DirectionViewCount - 1)).classList.add("RemoveDirection");
+    NumberDirections(); 
+});
+
+// Removes the direction template from the form
+$(document).on("click", ".RemoveDirection", function () {
+    var id = jQuery(this).attr("id").match(/\d+/g);
+    console.log("DirectionView" + id);
+    var directionView = document.getElementById("DirectionView" + id);
+    directionView.remove();
+    NumberDirections(); 
+})
+
+// Adds an ingredient template to the form
 $(document).on("click", ".AddIngredient", function(){
     IngredientViewCount++;
     var divID = "IngredientView"+ IngredientViewCount;
@@ -7,14 +79,14 @@ $(document).on("click", ".AddIngredient", function(){
     console.log("I'm in: " + divID + " " + buttonID);
 
     // Retrieve the template data from the HTML (jQuery is used here).
-    var template = $('#handlebars-demo').html();
+    var template = $("#IngredientHandlebar").html();
 
     // Compile the template data into a function
     var templateScript = Handlebars.compile(template);
 
     // Create the content
     var context = {divID: divID, buttonID: buttonID};
-    // html = 'My name is Ritesh Kumar. I am a developer.'
+
     var html = templateScript(context);
 
     // Insert the HTML code into the page
@@ -28,6 +100,19 @@ $(document).on("click", ".AddIngredient", function(){
     document.getElementById("ButtonId" + (IngredientViewCount - 1)).classList.add("RemoveIngredient");
 });
 
+// Removes the ingredient template from the form
 $(document).on("click", ".RemoveIngredient", function () {
-    alert("It's working...");
+    var id = jQuery(this).attr("id").match(/\d+/g);
+    var view = document.getElementById("IngredientView" + id);
+    view.remove();
 })
+
+// Iterates through the directions and renumbers them
+function NumberDirections() {
+    var directions = document.getElementsByClassName("directionCount");
+
+    for(var i = 0; i < directions.length; i++)
+    {
+       directions[i].innerHTML = (i + 1);
+    }
+}

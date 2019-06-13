@@ -11,8 +11,7 @@ namespace Pandalicious.Models
         public int RecipeId { get; set; }
         public string RecipeName { get; set; }
         public int RecipeServings { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime RecipeDuration { get; set; }
+        public string RecipeDuration { get; set; }
         public string RecipeDirections { get; set; }
         public List<Ingredient> RecipeIngredients { get; set; }
 
