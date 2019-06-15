@@ -1,19 +1,22 @@
 ﻿var IngredientViewCount = 0;
 var DirectionViewCount = 0;
 
-
+// Create the recipe
 $("a#FinishRecipe").click(function () {
-  console.log( $("#RecipeForm").serializeArray());
+    var recipe = $("#RecipeForm").serializeArray();
+    var data = JSON.stringify(recipe);
+    console.log(data);
+    var count = 1;
+    $.ajax({
+        url: "/api/Recipe/CreateRecipe",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function (result) {
+           //window.location.href = "/Recipes/";
+        }
+    })
 })
-
-
-
-
-
-
-
-
-
 
 // Populates the DataList with all of the ingredients from the database
 $(document).ready(function () {

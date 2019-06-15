@@ -36,8 +36,8 @@
                         </div>
                         <div id="IngredientView0" class="row">
                             <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                            <input name="RecipeValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
-                            <select name="RecipeUnit" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
+                            <input name="IngredientValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
+                            <select name="IngredientUnit" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
                                 <option value="">--</option>
                                 <optgroup label="Volume">
                                     @foreach (var u in UnitsOfMeasurement.UnitsVolume)
@@ -80,7 +80,7 @@
                                     <div class="col-lg-1 col-md-1 col-sm-1"></div>
                                     <div class="col-lg-2 col-md-6 col-sm-12">
                                         <label> @t</label>
-                                        <input name="RecipeTag" class="checkbox-primary input" type="checkbox">
+                                        <input name="@t" class="checkbox-primary input" type="checkbox">
                                     </div>
                                 }
                             }
