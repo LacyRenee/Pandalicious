@@ -1,0 +1,35 @@
+﻿@model Pandalicious.Models.Recipe;
+
+@{
+    ViewData["Title"] = "Recipe";
+}
+
+<div class="" id="recipesPage">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <h3 class="mb-30">@ViewBag.Recipe.RecipeName</h3>
+                <h4>Servings: @ViewBag.Recipe.RecipeServings</h4>
+                <h4>Duration: @ViewBag.Recipe.RecipeDuration</h4>
+                <br />
+
+                <h4>Ingredients:</h4>
+                @foreach (var i in ViewBag.Ingredients)
+                {
+                    <p>@i.MenuMeasurement @i.Ingredient.IngredientName</p>
+                }
+
+                <br />
+                <h4>Directions:</h4>
+
+                <br />
+                <h4>Tags:</h4>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+}

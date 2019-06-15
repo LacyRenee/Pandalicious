@@ -7,21 +7,6 @@ namespace Pandalicious.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Menus",
-                columns: table => new
-                {
-                    MenuId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    MenuMeasurement = table.Column<string>(nullable: true),
-                    RecipeId = table.Column<int>(nullable: false),
-                    IngredientId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Menus", x => x.MenuId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Recipes",
                 columns: table => new
                 {
@@ -30,7 +15,7 @@ namespace Pandalicious.Migrations
                     RecipeName = table.Column<string>(nullable: true),
                     RecipeServings = table.Column<int>(nullable: false),
                     RecipeDuration = table.Column<string>(nullable: true),
-                    RecipeDirections = table.Column<string>(nullable: true)
+                    RecipeIngredients = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -59,19 +44,45 @@ namespace Pandalicious.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Menus",
+                columns: table => new
+                {
+                    MenuId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    MenuMeasurement = table.Column<string>(nullable: true),
+                    RecipeId = table.Column<int>(nullable: false),
+                    IngredientId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Menus", x => x.MenuId);
+                    table.ForeignKey(
+                        name: "FK_Menus_Ingredients_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "Ingredients",
+                        principalColumn: "IngredientId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Ingredients_RecipeId",
                 table: "Ingredients",
                 column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Menus_IngredientId",
+                table: "Menus",
+                column: "IngredientId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Ingredients");
+                name: "Menus");
 
             migrationBuilder.DropTable(
-                name: "Menus");
+                name: "Ingredients");
 
             migrationBuilder.DropTable(
                 name: "Recipes");

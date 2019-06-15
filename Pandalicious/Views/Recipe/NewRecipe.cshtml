@@ -99,7 +99,7 @@
 </section>
 
 @section scripts{
-    <script type="text/javascript" src="/js/Recipe.js"></script>
+    <script type="text/javascript" src="/js/NewRecipe.js"></script>
     <script type="text/javascript" src="/js/handlebars.js"></script>
 
     <!--Ingredient view template-->
@@ -107,7 +107,7 @@
         <div id="{{divID}}" class="row">
             <div class="col-lg-1 col-md-1 col-sm-1"></div>
             <input name="IngredientValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
-            <select name="IngredientName" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
+            <select name="IngredientUnit" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
                 <option value="">--</option>
                 <optgroup label="Volume">
                     @foreach (var u in UnitsOfMeasurement.UnitsVolume)

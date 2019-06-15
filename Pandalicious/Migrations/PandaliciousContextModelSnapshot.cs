@@ -50,6 +50,8 @@ namespace Pandalicious.Migrations
 
                     b.HasKey("MenuId");
 
+                    b.HasIndex("IngredientId");
+
                     b.ToTable("Menus");
                 });
 
@@ -58,9 +60,9 @@ namespace Pandalicious.Migrations
                     b.Property<int>("RecipeId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("RecipeDirections");
-
                     b.Property<string>("RecipeDuration");
+
+                    b.Property<string>("RecipeIngredients");
 
                     b.Property<string>("RecipeName");
 
@@ -74,8 +76,16 @@ namespace Pandalicious.Migrations
             modelBuilder.Entity("Pandalicious.Models.Ingredient", b =>
                 {
                     b.HasOne("Pandalicious.Models.Recipe")
-                        .WithMany("RecipeIngredients")
+                        .WithMany("RecipeIngredientsList")
                         .HasForeignKey("RecipeId");
+                });
+
+            modelBuilder.Entity("Pandalicious.Models.Menu", b =>
+                {
+                    b.HasOne("Pandalicious.Models.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

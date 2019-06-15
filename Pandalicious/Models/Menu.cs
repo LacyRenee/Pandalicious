@@ -16,6 +16,7 @@ namespace Pandalicious.Models
 
         [ForeignKey("IngredientId")]
         public int IngredientId { get; set; }
+        public Ingredient Ingredient { get; set; }
 
     }
 }

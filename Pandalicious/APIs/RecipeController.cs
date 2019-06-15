@@ -40,8 +40,9 @@ namespace Pandalicious.APIs
         {
             JArray parsedArray = JArray.Parse(data.ToString());
             Recipe newRecipe = new Recipe();
+            _context.Recipes.Add(newRecipe);
+            _context.SaveChanges();
 
-            List<Ingredient> ingredientList = new List<Ingredient>();
             string ingredientValue = string.Empty;
             string ingredientName = string.Empty;
 
@@ -74,19 +75,41 @@ namespace Pandalicious.APIs
                     case "IngredientName":
                         ingredientName = parsedObject.GetValue("value").ToString();
 
-                        Ingredient newIngredient = new Ingredient
+                        if (_context.Ingredients.Where(x => x.IngredientName == ingredientName).Any())
                         {
-                            IngredientName = ingredientName,
-                            IngredientUnit = ingredientValue
-                        };
+                            Ingredient existingIngredient = _context.Ingredients.Where(x => x.IngredientName == ingredientName).FirstOrDefault();
 
-                        if (!_context.Ingredients.Where(x => x.IngredientName == ingredientName).Any())
+                            Menu newItem = new Menu()
+                            {
+                                MenuMeasurement = ingredientValue,
+                                IngredientId = existingIngredient.IngredientId,
+                                RecipeId = newRecipe.RecipeId
+                            };
+
+                            _context.Menus.Add(newItem);
+                            _context.SaveChanges();
+                        }
+                        else
                         {
+                            Ingredient newIngredient = new Ingredient()
+                            {
+                                IngredientName = ingredientName
+                            };
+
                             _context.Ingredients.Add(newIngredient);
+                            _context.SaveChanges();
+
+                            Menu newItem = new Menu()
+                            {
+                                MenuMeasurement = ingredientValue,
+                                IngredientId = newIngredient.IngredientId,
+                                Ingredient = newIngredient,
+                                RecipeId = newRecipe.RecipeId
+                            };
+                            _context.Menus.Add(newItem);
                             _context.SaveChanges();
                         }
 
-                        ingredientList.Add(newIngredient);
                         break;
                     case "RecipeDirection":
                         string newDirection = parsedObject.GetValue("value").ToString();
@@ -111,12 +134,9 @@ namespace Pandalicious.APIs
             }
 
             // Create the recipe
-            newRecipe.RecipeIngredients = ingredientList;
             newRecipe.RecipeDirections = recipeDirections;
             newRecipe.Tags = recipeTags;
 
-            // Add the recipe to the database and save changes
-            _context.Recipes.Add(newRecipe);
             _context.SaveChanges();
 
             return Json(new { success = true });

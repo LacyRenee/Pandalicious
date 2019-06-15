@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pandalicious.Models;
 using static Pandalicious.Models.Model;
 
 namespace Pandalicious.Controllers
 {
+    [Route("Recipe")]
     public class RecipeController : Controller
     {
         private readonly PandaliciousContext _context; // Access to the database
@@ -21,6 +24,9 @@ namespace Pandalicious.Controllers
         [HttpGet, Route("Recipes")]
         public IActionResult Recipes()
         {
+            var allRecipes = _context.Recipes.ToList();
+            ViewBag.AllRecipes = allRecipes;
+
             return View();
         }
 
@@ -28,6 +34,16 @@ namespace Pandalicious.Controllers
         public IActionResult NewRecipe()
         {
             return View();
+        }
+
+        [HttpPost, Route("RecipePV/")]
+        public IActionResult RecipePV([FromBody] int id)
+        {
+            Recipe recipe = _context.Recipes.Find(id);
+            var ingredients = _context.Menus.Include(i => i.Ingredient).Where(x => x.RecipeId == id).ToList();
+            ViewBag.Recipe = recipe;
+            ViewBag.Ingredients = ingredients;
+            return PartialView();
         }
     }
 }

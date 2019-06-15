@@ -68,6 +68,17 @@ textarea:focus, .form-control:focus, button:focus {
 }
 
 /****************************************/
+/*          AllRecipe Datatables        */
+/****************************************/
+#recipesPage{
+    margin-left: 100px;
+}
+
+#AllRecipeTable {
+    width: 200px;
+}
+
+/****************************************/
 /*          Sidebar navigation          */
 /****************************************/
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300);
