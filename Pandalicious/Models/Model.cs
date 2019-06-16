@@ -13,6 +13,8 @@ namespace Pandalicious.Models
             public DbSet<Ingredient> Ingredients { get; set; }
             public DbSet<Recipe> Recipes { get; set; }
             public DbSet<Menu> Menus { get; set; }
+            public DbSet<Direction> Direction { get; set; }
+            public DbSet<RecipeDirections> RecipeDirections { get; set; }
         }
     }
 }

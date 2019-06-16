@@ -15,6 +15,20 @@ namespace Pandalicious.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
+            modelBuilder.Entity("Pandalicious.Models.Direction", b =>
+                {
+                    b.Property<int>("DirectionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DirectionDescription");
+
+                    b.Property<int>("DirectionStep");
+
+                    b.HasKey("DirectionId");
+
+                    b.ToTable("Direction");
+                });
+
             modelBuilder.Entity("Pandalicious.Models.Ingredient", b =>
                 {
                     b.Property<int>("IngredientId")
@@ -66,11 +80,42 @@ namespace Pandalicious.Migrations
                     b.ToTable("Recipes");
                 });
 
+            modelBuilder.Entity("Pandalicious.Models.RecipeDirections", b =>
+                {
+                    b.Property<int>("RecipeDirectionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("DirectionId");
+
+                    b.Property<int>("RecipeId");
+
+                    b.HasKey("RecipeDirectionId");
+
+                    b.HasIndex("DirectionId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("RecipeDirections");
+                });
+
             modelBuilder.Entity("Pandalicious.Models.Menu", b =>
                 {
                     b.HasOne("Pandalicious.Models.Ingredient", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Pandalicious.Models.RecipeDirections", b =>
+                {
+                    b.HasOne("Pandalicious.Models.Direction", "Direction")
+                        .WithMany()
+                        .HasForeignKey("DirectionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Pandalicious.Models.Recipe", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

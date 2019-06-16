@@ -1,15 +1,12 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{1DC062E5-3DE4-4974-AACC-27D3DA8B021C}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pandalicious/Models/Direction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pandalicious Status">
     <Files>
-      <File FileName="Pandalicious/Controllers/RecipeController.cs" Line="43" Column="1" />
-      <File FileName="Pandalicious/Models/Recipe.cs" Line="15" Column="1" />
-      <File FileName="Pandalicious/Models/RecipeDirections.cs" Line="18" Column="42" />
-      <File FileName="Pandalicious/wwwroot/js/NewRecipe.js" Line="56" Column="58" />
-      <File FileName="Pandalicious/APIs/RecipeController.cs" Line="121" Column="27" />
-      <File FileName="Pandalicious/Views/Recipe/RecipePV.cshtml" Line="19" Column="71" />
-      <File FileName="Pandalicious/Views/Recipe/NewRecipe.cshtml" Line="110" Column="41" />
-      <File FileName="Pandalicious/Models/Menu.cs" Line="19" Column="50" />
-      <File FileName="Pandalicious/Models/Direction.cs" Line="9" Column="31" />
+      <File FileName="Pandalicious/Controllers/RecipeController.cs" Line="61" Column="1" />
+      <File FileName="Pandalicious/APIs/RecipeController.cs" Line="119" Column="47" />
+      <File FileName="Pandalicious/Views/Recipe/RecipePV.cshtml" Line="29" Column="23" />
+      <File FileName="Pandalicious/Views/Recipe/NewRecipe.cshtml" Line="134" Column="44" />
+      <File FileName="Pandalicious/wwwroot/js/NewRecipe.js" Line="23" Column="19" />
+      <File FileName="Pandalicious Status" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,22 +15,20 @@
             <Node name="Pandalicious" expanded="True">
               <Node name="APIs" expanded="True" />
               <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Direction.cs" selected="True" />
-              </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
               <Node name="Services" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Handlebars" expanded="True" />
                 <Node name="Home" expanded="True" />
-                <Node name="Recipe" expanded="True" />
+                <Node name="Recipe" expanded="True">
+                  <Node name="RecipePV.cshtml" selected="True" />
+                </Node>
                 <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
                 <Node name="css" expanded="True" />
-                <Node name="js" expanded="True">
-                  <Node name="vendor" expanded="True" />
-                </Node>
+                <Node name="js" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -45,9 +40,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/wwwroot/js/NewRecipe.js" relfile="Pandalicious/wwwroot/js/NewRecipe.js" line="22" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

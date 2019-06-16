@@ -21,6 +21,10 @@
 
                 <br />
                 <h4>Directions:</h4>
+                @foreach (var d in ViewBag.Directions)
+                {
+                    <p>Step @(d.Direction.DirectionStep): @d.Direction.DirectionDescription</p>
+                }
 
                 <br />
                 <h4>Tags:</h4>

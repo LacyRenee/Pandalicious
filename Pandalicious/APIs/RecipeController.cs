@@ -116,9 +116,19 @@ namespace Pandalicious.APIs
                     case "RecipeDirection":
                         Direction newDirection = new Direction
                         {
-                            DirectionStep = directionStep++,
+                            DirectionStep = ++directionStep,
                             DirectionDescription = parsedObject.GetValue("value").ToString()
                         };
+                        _context.Direction.Add(newDirection);
+                        _context.SaveChanges();
+
+                        RecipeDirections newRecipeDirections = new RecipeDirections();
+                        _context.RecipeDirections.Add(newRecipeDirections);
+
+                        newRecipeDirections.DirectionId = newDirection.DirectionId;
+                        newRecipeDirections.Direction = newDirection;
+                        newRecipeDirections.RecipeId = newRecipe.RecipeId;
+                        newRecipeDirections.Recipe = newRecipe;
 
                         break;
                     case "Keto":

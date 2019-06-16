@@ -7,6 +7,20 @@ namespace Pandalicious.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Direction",
+                columns: table => new
+                {
+                    DirectionId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DirectionStep = table.Column<int>(nullable: false),
+                    DirectionDescription = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Direction", x => x.DirectionId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Ingredients",
                 columns: table => new
                 {
@@ -57,10 +71,46 @@ namespace Pandalicious.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RecipeDirections",
+                columns: table => new
+                {
+                    RecipeDirectionId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DirectionId = table.Column<int>(nullable: false),
+                    RecipeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecipeDirections", x => x.RecipeDirectionId);
+                    table.ForeignKey(
+                        name: "FK_RecipeDirections_Direction_DirectionId",
+                        column: x => x.DirectionId,
+                        principalTable: "Direction",
+                        principalColumn: "DirectionId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RecipeDirections_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "RecipeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Menus_IngredientId",
                 table: "Menus",
                 column: "IngredientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeDirections_DirectionId",
+                table: "RecipeDirections",
+                column: "DirectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeDirections_RecipeId",
+                table: "RecipeDirections",
+                column: "RecipeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -69,10 +119,16 @@ namespace Pandalicious.Migrations
                 name: "Menus");
 
             migrationBuilder.DropTable(
-                name: "Recipes");
+                name: "RecipeDirections");
 
             migrationBuilder.DropTable(
                 name: "Ingredients");
+
+            migrationBuilder.DropTable(
+                name: "Direction");
+
+            migrationBuilder.DropTable(
+                name: "Recipes");
         }
     }
 }
