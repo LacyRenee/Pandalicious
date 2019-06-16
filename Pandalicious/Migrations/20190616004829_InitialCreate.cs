@@ -7,22 +7,6 @@ namespace Pandalicious.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Recipes",
-                columns: table => new
-                {
-                    RecipeId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    RecipeName = table.Column<string>(nullable: true),
-                    RecipeServings = table.Column<int>(nullable: false),
-                    RecipeDuration = table.Column<string>(nullable: true),
-                    RecipeIngredients = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Recipes", x => x.RecipeId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Ingredients",
                 columns: table => new
                 {
@@ -30,18 +14,26 @@ namespace Pandalicious.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     IngredientName = table.Column<string>(nullable: false),
                     IngredientUnit = table.Column<string>(nullable: true),
-                    BookId = table.Column<int>(nullable: false),
-                    RecipeId = table.Column<int>(nullable: true)
+                    BookId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ingredients", x => x.IngredientId);
-                    table.ForeignKey(
-                        name: "FK_Ingredients_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "RecipeId",
-                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Recipes",
+                columns: table => new
+                {
+                    RecipeId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    RecipeName = table.Column<string>(nullable: true),
+                    RecipeServings = table.Column<int>(nullable: false),
+                    RecipeDuration = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Recipes", x => x.RecipeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,11 +58,6 @@ namespace Pandalicious.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_RecipeId",
-                table: "Ingredients",
-                column: "RecipeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Menus_IngredientId",
                 table: "Menus",
                 column: "IngredientId");
@@ -82,10 +69,10 @@ namespace Pandalicious.Migrations
                 name: "Menus");
 
             migrationBuilder.DropTable(
-                name: "Ingredients");
+                name: "Recipes");
 
             migrationBuilder.DropTable(
-                name: "Recipes");
+                name: "Ingredients");
         }
     }
 }

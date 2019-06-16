@@ -12,10 +12,7 @@ namespace Pandalicious.Models
         public string RecipeName { get; set; }
         public int RecipeServings { get; set; }
         public string RecipeDuration { get; set; }
-        public string RecipeIngredients { get; set; }
-        
-        [NotMapped]
-        public List<string> RecipeDirections { get; set; }
+
         [NotMapped]
         public List<string> Tags { get; set; }
     }

@@ -1,13 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{1DC062E5-3DE4-4974-AACC-27D3DA8B021C}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pandalicious Status">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pandalicious/Models/Direction.cs">
     <Files>
       <File FileName="Pandalicious/Controllers/RecipeController.cs" Line="43" Column="1" />
+      <File FileName="Pandalicious/Models/Recipe.cs" Line="15" Column="1" />
+      <File FileName="Pandalicious/Models/RecipeDirections.cs" Line="18" Column="42" />
       <File FileName="Pandalicious/wwwroot/js/NewRecipe.js" Line="56" Column="58" />
-      <File FileName="Pandalicious/APIs/RecipeController.cs" Line="76" Column="70" />
+      <File FileName="Pandalicious/APIs/RecipeController.cs" Line="121" Column="27" />
       <File FileName="Pandalicious/Views/Recipe/RecipePV.cshtml" Line="19" Column="71" />
       <File FileName="Pandalicious/Views/Recipe/NewRecipe.cshtml" Line="110" Column="41" />
-      <File FileName="Pandalicious/Models/Recipe.cs" Line="13" Column="40" />
-      <File FileName="Pandalicious Status" />
+      <File FileName="Pandalicious/Models/Menu.cs" Line="19" Column="50" />
+      <File FileName="Pandalicious/Models/Direction.cs" Line="9" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,7 +19,7 @@
               <Node name="APIs" expanded="True" />
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Recipe.cs" selected="True" />
+                <Node name="Direction.cs" selected="True" />
               </Node>
               <Node name="Properties" expanded="True" />
               <Node name="Services" expanded="True" />

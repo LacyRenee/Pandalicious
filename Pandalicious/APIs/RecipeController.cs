@@ -49,6 +49,8 @@ namespace Pandalicious.APIs
             List<string> recipeDirections = new List<string>();
             List<string> recipeTags = new List<string>();
 
+            int directionStep = 0;
+
             // Loop through the form data and create the recipe model 
             foreach (JObject parsedObject in parsedArray)
             {
@@ -112,8 +114,12 @@ namespace Pandalicious.APIs
 
                         break;
                     case "RecipeDirection":
-                        string newDirection = parsedObject.GetValue("value").ToString();
-                        recipeDirections.Add(newDirection);
+                        Direction newDirection = new Direction
+                        {
+                            DirectionStep = directionStep++,
+                            DirectionDescription = parsedObject.GetValue("value").ToString()
+                        };
+
                         break;
                     case "Keto":
                     case "Entree":
@@ -134,7 +140,6 @@ namespace Pandalicious.APIs
             }
 
             // Create the recipe
-            newRecipe.RecipeDirections = recipeDirections;
             newRecipe.Tags = recipeTags;
 
             _context.SaveChanges();
