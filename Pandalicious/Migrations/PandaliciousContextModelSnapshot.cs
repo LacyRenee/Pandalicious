@@ -26,7 +26,7 @@ namespace Pandalicious.Migrations
 
                     b.HasKey("DirectionId");
 
-                    b.ToTable("Direction");
+                    b.ToTable("Directions");
                 });
 
             modelBuilder.Entity("Pandalicious.Models.Ingredient", b =>
@@ -98,6 +98,22 @@ namespace Pandalicious.Migrations
                     b.ToTable("RecipeDirections");
                 });
 
+            modelBuilder.Entity("Pandalicious.Models.Tags", b =>
+                {
+                    b.Property<int>("TagId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("RecipeId");
+
+                    b.Property<string>("TagName");
+
+                    b.HasKey("TagId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("Tags");
+                });
+
             modelBuilder.Entity("Pandalicious.Models.Menu", b =>
                 {
                     b.HasOne("Pandalicious.Models.Ingredient", "Ingredient")
@@ -113,6 +129,14 @@ namespace Pandalicious.Migrations
                         .HasForeignKey("DirectionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("Pandalicious.Models.Recipe", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Pandalicious.Models.Tags", b =>
+                {
                     b.HasOne("Pandalicious.Models.Recipe", "Recipe")
                         .WithMany()
                         .HasForeignKey("RecipeId")

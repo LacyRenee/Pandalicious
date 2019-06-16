@@ -44,6 +44,11 @@ namespace Pandalicious.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Returns the partial view for the selected recipe
+        /// </summary>
+        /// <returns>The partial view</returns>
+        /// <param name="id">Identifier.</param>
         [HttpPost, Route("RecipePV/")]
         public IActionResult RecipePV([FromBody] int id)
         {
@@ -59,6 +64,9 @@ namespace Pandalicious.Controllers
             var directions = _context.RecipeDirections.Include(d => d.Direction).Where(x => x.RecipeId == id).ToList();
             ViewBag.Directions = directions;
 
+            // Find all of the tags for the recipe
+            var tags = _context.Tags.Where(x => x.RecipeId == id).ToList();
+            ViewBag.Tags = tags;
             return PartialView();
         }
     }

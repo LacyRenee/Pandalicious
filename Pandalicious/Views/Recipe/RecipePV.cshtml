@@ -28,6 +28,10 @@
 
                 <br />
                 <h4>Tags:</h4>
+                @foreach(var t in ViewBag.Tags)
+                {
+                    <p>@t.TagName</p>
+                }
 
             </div>
         </div>

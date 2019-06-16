@@ -7,7 +7,7 @@ namespace Pandalicious.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Direction",
+                name: "Directions",
                 columns: table => new
                 {
                     DirectionId = table.Column<int>(nullable: false)
@@ -17,7 +17,7 @@ namespace Pandalicious.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Direction", x => x.DirectionId);
+                    table.PrimaryKey("PK_Directions", x => x.DirectionId);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,13 +84,33 @@ namespace Pandalicious.Migrations
                 {
                     table.PrimaryKey("PK_RecipeDirections", x => x.RecipeDirectionId);
                     table.ForeignKey(
-                        name: "FK_RecipeDirections_Direction_DirectionId",
+                        name: "FK_RecipeDirections_Directions_DirectionId",
                         column: x => x.DirectionId,
-                        principalTable: "Direction",
+                        principalTable: "Directions",
                         principalColumn: "DirectionId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RecipeDirections_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "RecipeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    TagId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TagName = table.Column<string>(nullable: true),
+                    RecipeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.TagId);
+                    table.ForeignKey(
+                        name: "FK_Tags_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "RecipeId",
@@ -111,6 +131,11 @@ namespace Pandalicious.Migrations
                 name: "IX_RecipeDirections_RecipeId",
                 table: "RecipeDirections",
                 column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tags_RecipeId",
+                table: "Tags",
+                column: "RecipeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -122,10 +147,13 @@ namespace Pandalicious.Migrations
                 name: "RecipeDirections");
 
             migrationBuilder.DropTable(
+                name: "Tags");
+
+            migrationBuilder.DropTable(
                 name: "Ingredients");
 
             migrationBuilder.DropTable(
-                name: "Direction");
+                name: "Directions");
 
             migrationBuilder.DropTable(
                 name: "Recipes");

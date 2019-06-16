@@ -10,7 +10,7 @@ namespace Pandalicious.Services
         {
             "Keto",
             "Entree",
-            "Sides",
+            "Side",
             "Dessert",
             "Chicken",
             "Pork",

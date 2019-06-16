@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Pandalicious.Models;
+using Pandalicious.Services;
 using static Pandalicious.Models.Model;
 
 namespace Pandalicious.APIs
@@ -46,9 +47,6 @@ namespace Pandalicious.APIs
             string ingredientValue = string.Empty;
             string ingredientName = string.Empty;
 
-            List<string> recipeDirections = new List<string>();
-            List<string> recipeTags = new List<string>();
-
             int directionStep = 0;
 
             // Loop through the form data and create the recipe model 
@@ -60,10 +58,20 @@ namespace Pandalicious.APIs
                 switch (propertyName)
                 {
                     case "RecipeName":
-                        newRecipe.RecipeName = parsedObject.GetValue("value").ToString();
+                        if (parsedObject.GetValue("value").ToString() == String.Empty)
+                        {
+                            newRecipe.RecipeName = "Unnamed Recipe";
+                        }
+                        else
+                        {
+                            newRecipe.RecipeName = parsedObject.GetValue("value").ToString();
+                        }
                         break;
                     case "RecipeServings":
-                        newRecipe.RecipeServings = int.Parse(parsedObject.GetValue("value").ToString());
+                        if (parsedObject.GetValue("value").ToString() != String.Empty)
+                        {
+                            newRecipe.RecipeServings = int.Parse(parsedObject.GetValue("value").ToString());
+                        }
                         break;
                     case "RecipeDuration":
                         newRecipe.RecipeDuration = parsedObject.GetValue("value").ToString();
@@ -75,82 +83,162 @@ namespace Pandalicious.APIs
                         ingredientValue += parsedObject.GetValue("value").ToString();
                         break;
                     case "IngredientName":
-                        ingredientName = parsedObject.GetValue("value").ToString();
-
-                        if (_context.Ingredients.Where(x => x.IngredientName == ingredientName).Any())
+                        if (parsedObject.GetValue("value").ToString() != String.Empty)
                         {
-                            Ingredient existingIngredient = _context.Ingredients.Where(x => x.IngredientName == ingredientName).FirstOrDefault();
+                            ingredientName = parsedObject.GetValue("value").ToString();
 
-                            Menu newItem = new Menu()
+                            if (_context.Ingredients.Where(x => x.IngredientName == ingredientName).Any())
                             {
-                                MenuMeasurement = ingredientValue,
-                                IngredientId = existingIngredient.IngredientId,
-                                RecipeId = newRecipe.RecipeId
-                            };
+                                Ingredient existingIngredient = _context.Ingredients.Where(x => x.IngredientName == ingredientName).FirstOrDefault();
 
-                            _context.Menus.Add(newItem);
-                            _context.SaveChanges();
+                                Menu newItem = new Menu()
+                                {
+                                    MenuMeasurement = ingredientValue,
+                                    IngredientId = existingIngredient.IngredientId,
+                                    RecipeId = newRecipe.RecipeId
+                                };
+
+                                _context.Menus.Add(newItem);
+                                _context.SaveChanges();
+                            }
+                            else
+                            {
+                                Ingredient newIngredient = new Ingredient()
+                                {
+                                    IngredientName = ingredientName
+                                };
+
+                                _context.Ingredients.Add(newIngredient);
+                                _context.SaveChanges();
+
+                                Menu newItem = new Menu()
+                                {
+                                    MenuMeasurement = ingredientValue,
+                                    IngredientId = newIngredient.IngredientId,
+                                    Ingredient = newIngredient,
+                                    RecipeId = newRecipe.RecipeId
+                                };
+                                _context.Menus.Add(newItem);
+                                _context.SaveChanges();
+                            }
                         }
-                        else
-                        {
-                            Ingredient newIngredient = new Ingredient()
-                            {
-                                IngredientName = ingredientName
-                            };
-
-                            _context.Ingredients.Add(newIngredient);
-                            _context.SaveChanges();
-
-                            Menu newItem = new Menu()
-                            {
-                                MenuMeasurement = ingredientValue,
-                                IngredientId = newIngredient.IngredientId,
-                                Ingredient = newIngredient,
-                                RecipeId = newRecipe.RecipeId
-                            };
-                            _context.Menus.Add(newItem);
-                            _context.SaveChanges();
-                        }
-
                         break;
                     case "RecipeDirection":
-                        Direction newDirection = new Direction
+                        if (parsedObject.GetValue("value").ToString() != String.Empty)
                         {
-                            DirectionStep = ++directionStep,
-                            DirectionDescription = parsedObject.GetValue("value").ToString()
-                        };
-                        _context.Direction.Add(newDirection);
-                        _context.SaveChanges();
+                            Direction newDirection = new Direction
+                            {
+                                DirectionStep = ++directionStep,
+                                DirectionDescription = parsedObject.GetValue("value").ToString()
+                            };
+                            _context.Directions.Add(newDirection);
+                            _context.SaveChanges();
 
-                        RecipeDirections newRecipeDirections = new RecipeDirections();
-                        _context.RecipeDirections.Add(newRecipeDirections);
+                            RecipeDirections newRecipeDirections = new RecipeDirections();
+                            _context.RecipeDirections.Add(newRecipeDirections);
 
-                        newRecipeDirections.DirectionId = newDirection.DirectionId;
-                        newRecipeDirections.Direction = newDirection;
-                        newRecipeDirections.RecipeId = newRecipe.RecipeId;
-                        newRecipeDirections.Recipe = newRecipe;
-
+                            newRecipeDirections.DirectionId = newDirection.DirectionId;
+                            newRecipeDirections.Direction = newDirection;
+                            newRecipeDirections.RecipeId = newRecipe.RecipeId;
+                            newRecipeDirections.Recipe = newRecipe;
+                        }
                         break;
                     case "Keto":
+                        Tags ketoTag = new Tags()
+                        {
+                            TagName = "Keto",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(ketoTag);
+                        break;
                     case "Entree":
-                    case "Sides":
+                        Tags entreeTag = new Tags()
+                        {
+                            TagName = "Entree",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(entreeTag);
+                        break;
+                    case "Side":
+                        Tags sideTag = new Tags()
+                        {
+                            TagName = "Side",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(sideTag);
+                        break;
                     case "Dessert":
+                        Tags dessertTag = new Tags()
+                        {
+                            TagName = "Dessert",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(dessertTag);
+                        break;
                     case "Chicken":
+                        Tags chickenTag = new Tags()
+                        {
+                            TagName = "Chicken",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(chickenTag);
+                        break;
                     case "Pork":
+                        Tags porkTag = new Tags()
+                        {
+                            TagName = "Pork",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(porkTag);
+                        break;
                     case "Beef":
+                        Tags beefTag = new Tags()
+                        {
+                            TagName = "Beef",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(beefTag);
+                        break;
                     case "Fish":
+                        Tags fishTag = new Tags()
+                        {
+                            TagName = "Fish",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(fishTag);
+                        break;
                     case "Other":
-                        string newTag = parsedObject.GetValue("value").ToString();
-                        recipeTags.Add(newTag);
+                        Tags otherTag = new Tags()
+                        {
+                            TagName = "Other",
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.Tags.Add(otherTag);
+
                         break;
                     default:
                         throw new Exception("Property not found");
                 }
 
             }
-
-            // Create the recipe
-            newRecipe.Tags = recipeTags;
 
             _context.SaveChanges();
 
