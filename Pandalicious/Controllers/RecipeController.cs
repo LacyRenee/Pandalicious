@@ -69,5 +69,25 @@ namespace Pandalicious.Controllers
             ViewBag.Tags = tags;
             return PartialView();
         }
+
+        [HttpGet, Route("Entrees")]
+        public IActionResult Entrees()
+        {
+            var entrees = _context.Tags.Where(x => x.TagName == "Entree").Select(r => r.Recipe).ToList();
+            ViewBag.Entrees = entrees;
+            return View();
+        }
+
+        [HttpGet, Route("Sides")]
+        public IActionResult Sides()
+        {
+            return View();
+        }
+
+        [HttpGet, Route("Desserts")]
+        public IActionResult Desserts()
+        {
+            return View();
+        }
     }
 }

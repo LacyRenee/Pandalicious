@@ -50,7 +50,6 @@
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Pandalicious.TagHelpers.input.cache
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Pandalicious.TagHelpers.output.cache
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Pandalicious.RazorCoreGenerate.cache
-/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Handlebars/AddIngredientView.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/About.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/Ingredients.g.cshtml.cs
@@ -73,3 +72,6 @@
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Pandalicious.csproj.CopyComplete
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Pandalicious.csprojAssemblyReference.cache
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/RecipePV.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Entrees.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Sides.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Desserts.g.cshtml.cs

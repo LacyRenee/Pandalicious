@@ -328,6 +328,5 @@
     <Folder Include="APIs\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Recipe\" />
-    <Folder Include="Views\Handlebars\" />
   </ItemGroup>
 </Project>

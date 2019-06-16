@@ -70,13 +70,17 @@ textarea:focus, .form-control:focus, button:focus {
 /****************************************/
 /*          AllRecipe Datatables        */
 /****************************************/
-#recipesPage{
-    margin-left: 100px;
+.recipesPage{
+    margin-left: 90px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 #AllRecipeTable {
     width: 200px;
 }
+
+
 
 /****************************************/
 /*          Sidebar navigation          */

@@ -1,30 +1,28 @@
-﻿@model Pandalicious.Models.Recipe;
-
-@{
-    ViewData["Title"] = "Recipes";
+﻿@{
+    ViewData["Title"] = "Entrees";
 }
 
 <div class="recipesPage">
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-                <h3 class="mb-30">List of All Recipes</h3>
+                <h3 class="mb-30">List of All Entrees</h3>
                 <div class="col-md-9">
                     <a asp-controller="Recipe" asp-action="NewRecipe" class="genric-btn info-border small circle">Add Recipe</a>
                 </div> <br />
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3 DataTableForAllRecipes">
-                        <table id="AllRecipeTable" class="table-bordered table-striped">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <table id="EntreeTable" class="table-bordered table-striped">
                             <thead>
                                 <tr class="table-row">
                                     <th>Recipe Name</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var r in ViewBag.AllRecipes)
+                                @foreach (var e in ViewBag.Entrees)
                                 {
                                     <tr class="table-row">
-                                        <td><a class="ListOfRecipes" data-recipeID="@r.RecipeId">@r.RecipeName</a></td>
+                                        <td><a class="ListOfRecipes" data-recipeID="@e.RecipeId">@e.RecipeName</a></td>
                                     </tr>
                                 }
                             </tbody>
@@ -34,19 +32,16 @@
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
-
-@section scripts
-{
+@section scripts {
     <script type="text/javascript" src="/js/Recipe.js"></script>
 
     <script type="text/javascript" charset="utf8">$(document).ready(function () {
-            $('#AllRecipeTable').DataTable({
+            $('#EntreeTable').DataTable({
                 "order": [0, 'asc'],
                 "columnDefs": [
                     { "orderable": false }
