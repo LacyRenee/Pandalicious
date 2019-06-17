@@ -7,37 +7,53 @@
 <div class="" id="recipesPage">
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <h3 class="mb-30">@ViewBag.Recipe.RecipeName</h3>
-                <h4>Servings: @ViewBag.Recipe.RecipeServings</h4>
-                <h4>Duration: @ViewBag.Recipe.RecipeDuration</h4>
-                <br />
+            <div class="menu-list">
+                <div class="single-menu">
+                    <h3>@ViewBag.Recipe.RecipeName</h3>
 
-                <h4>Ingredients:</h4>
-                @foreach (var i in ViewBag.Ingredients)
-                {
-                    <p>@i.MenuMeasurement @i.Ingredient.IngredientName</p>
-                }
 
-                <br />
-                <h4>Directions:</h4>
-                @foreach (var d in ViewBag.Directions)
-                {
-                    <p>Step @(d.Direction.DirectionStep): @d.Direction.DirectionDescription</p>
-                }
-
-                <br />
-                <h4>Tags:</h4>
-                @foreach(var t in ViewBag.Tags)
-                {
-                    <p>@t.TagName</p>
-                }
-
+                    <div class="row RecipeNavBar center">
+                        <button class="genric-btn primary-border small"><i class="fa fa-pencil">  Edit</i></button>
+                        <button class="genric-btn primary-border small" data-toggle="AddMealTooltip" data-placement="bottom" title="Saves the meal to your meal plan"><i class="fa fa-plus">  Meal Plan</i></button>
+                        <button class="genric-btn primary-border small" data-toggle="AddShoppingListTooltip" data-placement="bottom" title="Adds all of the ingredients to your shopping list"><i class="fa fa-plus">  Shopping List</i></button>
+                        <button class="genric-btn primary-border small"><i class="fa fa-print">  Print</i></button>
+                    </div>
+                    <ul class="list">
+                        <li>
+                            <p><span class="menu-item">Servings:</span> @ViewBag.Recipe.RecipeServings</p>
+                            <p><span class="menu-item">Duration:</span> @ViewBag.Recipe.RecipeDuration</p>
+                        </li>
+                        <li>
+                            <p class="menu-item">Ingredients:</p>
+                            @foreach (var i in ViewBag.Ingredients)
+                            {
+                                <p>@i.MenuMeasurement @i.Ingredient.IngredientName</p>
+                            }
+                        </li>
+                        <li>
+                            <p class="menu-item">Directions:</p>
+                            @foreach (var d in ViewBag.Directions)
+                            {
+                                <p>Step @(d.Direction.DirectionStep): @d.Direction.DirectionDescription</p>
+                            }
+                        </li>
+                        <li>
+                            <p class="menu-item">Tags:</p>
+                            @foreach (var t in ViewBag.Tags)
+                            {
+                                <p>@t.TagName</p>
+                            }
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
 @section scripts{
+<script>$(document).ready(function () {
+        $('[data-toggle="AddMealTooltip"]').tooltip();
+        $('[data-toggle="AddShoppingListTooltip"]').tooltip();
+    });</script>
 }
