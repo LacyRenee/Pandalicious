@@ -13,7 +13,7 @@
 
 
                     <div class="row RecipeNavBar center">
-                        <button class="genric-btn primary-border small"><i class="fa fa-pencil">  Edit</i></button>
+                        <a asp-controller="Recipe" asp-action="EditRecipe" asp-route-id="@ViewBag.Recipe.RecipeId" class="genric-btn primary-border small"><i class="fa fa-pencil">  Edit</i></a>
                         <button class="genric-btn primary-border small" data-toggle="AddMealTooltip" data-placement="bottom" title="Saves the meal to your meal plan"><i class="fa fa-plus">  Meal Plan</i></button>
                         <button class="genric-btn primary-border small" data-toggle="AddShoppingListTooltip" data-placement="bottom" title="Adds all of the ingredients to your shopping list"><i class="fa fa-plus">  Shopping List</i></button>
                         <button class="genric-btn primary-border small"><i class="fa fa-print">  Print</i></button>

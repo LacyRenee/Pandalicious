@@ -75,3 +75,4 @@
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Entrees.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Sides.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Desserts.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/EditRecipe.g.cshtml.cs

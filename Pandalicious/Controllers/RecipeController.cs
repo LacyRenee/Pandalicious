@@ -7,7 +7,7 @@ using static Pandalicious.Models.Model;
 
 namespace Pandalicious.Controllers
 {
-    [Route("Recipe")]
+    [Route("Recipe/")]
     public class RecipeController : Controller
     {
         private readonly PandaliciousContext _context; // Access to the database
@@ -25,7 +25,7 @@ namespace Pandalicious.Controllers
         /// Allows the user to view all of the recipes
         /// </summary>
         /// <returns>All of the recipes view</returns>
-        [HttpGet, Route("Recipes")]
+        [HttpGet]
         public IActionResult Recipes()
         {
             var allRecipes = _context.Recipes.ToList();
@@ -33,6 +33,21 @@ namespace Pandalicious.Controllers
 
             return View();
         }
+
+        [HttpGet, Route("EditRecipe/{id}")]
+        public IActionResult EditRecipe(int id)
+        {
+            var recipe = _context.Recipes.Where(x => x.RecipeId == id).First();
+            var ingredients = _context.Menus.Include(i => i.Ingredient).Where(x => x.RecipeId == id).ToList();
+            var directions = _context.RecipeDirections.Include(d => d.Direction).Where(x => x.RecipeId == id).ToList();
+
+            ViewBag.Recipe = recipe;
+            ViewBag.Ingredients = ingredients;
+            ViewBag.Directions = directions;
+            return View();
+        }
+
+       
 
         /// <summary>
         /// Allows the user to create a new recipe

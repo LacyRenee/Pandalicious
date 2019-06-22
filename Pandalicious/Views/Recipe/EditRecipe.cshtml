@@ -2,7 +2,7 @@
 @using Pandalicious.Services;
 
 @{
-    ViewData["Title"] = "New Recipe";
+    ViewData["Title"] = "Edit Recipe";
 }    <!--================ Reservation Area =================-->
 <section class="reservation-area">
     <div class="container">
@@ -19,45 +19,48 @@
                     <div class="form-group">
                         <div class="row">
                             <label class="col-lg-1 col-md-1 col-sm-1" style="font-weight:bold;">Recipe Name:</label>
-                            <input name="RecipeName" placeholder="Enter Recipe Name" class="col-lg-6 col-md-6 col-sm-12 form-control" type="text" />
+                            <input name="RecipeName" value="@ViewBag.Recipe.RecipeName" placeholder="Enter Recipe Name" class="col-lg-6 col-md-6 col-sm-12 form-control" type="text" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <label class="col-lg-1 col-md-1" style="font-weight:bold;">Servings:</label>
-                            <input name="RecipeServings" class="col-lg-1 col-md-1" type="number" min="0" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            <input name="RecipeServings" value="@ViewBag.Recipe.RecipeServings" class="col-lg-1 col-md-1" type="number" min="0" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                             <label class="col-lg-1 col-md-1" style="font-weight:bold;">Duration: </label>
-                            <input name="RecipeDuration" class="col-lg-2 col-md-2" placeholder="Enter recipe time" type="text" />
+                            <input name="RecipeDuration" value="@ViewBag.Recipe.RecipeDuration" class="col-lg-2 col-md-2" placeholder="Enter recipe time" type="text" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <label class="col-lg-1 col-md-1 col-sm-1" style="font-weight:bold;">Ingredients:</label>
                         </div>
-                        <div id="IngredientView0" class="row IngredientView">
-                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                            <input name="IngredientValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
-                            <select name="IngredientUnit" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
-                                <option value="">--</option>
-                                <optgroup label="Volume">
-                                    @foreach (var u in UnitsOfMeasurement.UnitsVolume)
-                                    {
-                                        <option value="@u">@u</option>
-                                    }
-                                </optgroup>
-                                <optgroup label="Weight">
-                                    @foreach (var u in UnitsOfMeasurement.UnitsWeight)
-                                    {
-                                        <option value="@u">@u</option>
-                                    }
-                                </optgroup>
-                            </select>
-                            <input name="IngredientName" class="col-lg-3 col-md-3 col-sm-3" list="ListOfIngredients" placeholder="Find ingredient" type="text" /> &nbsp;
-                            <button id="removeButtonID0" type="button" class="genric-btn danger-border RemoveIngredient">Remove</button> &nbsp;
-                            <button id="AddButtonId0" type="button" class="genric-btn success-border AddIngredient">Add</button>
-                            <datalist id="ListOfIngredients"></datalist>
-                        </div>
-                        <div id="template"></div>
+                        @foreach (var i in ViewBag.Ingredients)
+                        {
+                            <div id="IngredientView0" class="row IngredientView">
+                                <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                                <input name="IngredientValue" value="@i.MenuMeasurement.Split(" ")[0]" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
+                                <select name="IngredientUnit" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
+                                    <option value="@i.MenuMeasurement.Split(" ")[0]">@i.MenuMeasurement.Split(" ")[1]</option>
+                                    <optgroup label="Volume">
+                                        @foreach (var u in UnitsOfMeasurement.UnitsVolume)
+                                        {
+                                            <option value="@u">@u</option>
+                                        }
+                                    </optgroup>
+                                    <optgroup label="Weight">
+                                        @foreach (var u in UnitsOfMeasurement.UnitsWeight)
+                                        {
+                                            <option value="@u">@u</option>
+                                        }
+                                    </optgroup>
+                                </select>
+                                <input name="IngredientName" value="@i.Ingredient.IngredientName" class="col-lg-3 col-md-3 col-sm-3" list="ListOfIngredients" placeholder="Find ingredient" type="text" /> &nbsp;
+                                <button id="removeButtonID0" type="button" class="genric-btn danger-border RemoveIngredient">Remove</button> &nbsp;
+                                <button id="AddButtonId0" type="button" class="genric-btn success-border AddIngredient">Add</button>
+                                <datalist id="ListOfIngredients"></datalist>
+                            </div>
+                            <div id="template"></div>
+                        }
                     </div>
                     <div class="form-group">
                         <div class="row">
