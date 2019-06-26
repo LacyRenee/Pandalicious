@@ -8,7 +8,7 @@ using Pandalicious.Models;
 namespace Pandalicious.Migrations
 {
     [DbContext(typeof(Model.PandaliciousContext))]
-    [Migration("20190616011203_InitialCreate")]
+    [Migration("20190626193229_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,18 +100,32 @@ namespace Pandalicious.Migrations
                     b.ToTable("RecipeDirections");
                 });
 
-            modelBuilder.Entity("Pandalicious.Models.Tags", b =>
+            modelBuilder.Entity("Pandalicious.Models.RecipeTags", b =>
                 {
-                    b.Property<int>("TagId")
+                    b.Property<int>("RecipeTagId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("RecipeId");
 
+                    b.Property<int>("TagId");
+
+                    b.HasKey("RecipeTagId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("RecipeTags");
+                });
+
+            modelBuilder.Entity("Pandalicious.Models.Tag", b =>
+                {
+                    b.Property<int>("TagId")
+                        .ValueGeneratedOnAdd();
+
                     b.Property<string>("TagName");
 
                     b.HasKey("TagId");
-
-                    b.HasIndex("RecipeId");
 
                     b.ToTable("Tags");
                 });
@@ -137,11 +151,16 @@ namespace Pandalicious.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Pandalicious.Models.Tags", b =>
+            modelBuilder.Entity("Pandalicious.Models.RecipeTags", b =>
                 {
                     b.HasOne("Pandalicious.Models.Recipe", "Recipe")
                         .WithMany()
                         .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Pandalicious.Models.Tag", "Tag")
+                        .WithMany()
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

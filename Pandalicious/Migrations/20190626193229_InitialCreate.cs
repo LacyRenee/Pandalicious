@@ -51,6 +51,19 @@ namespace Pandalicious.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    TagId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TagName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.TagId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Menus",
                 columns: table => new
                 {
@@ -98,22 +111,28 @@ namespace Pandalicious.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "RecipeTags",
                 columns: table => new
                 {
-                    TagId = table.Column<int>(nullable: false)
+                    RecipeTagId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TagName = table.Column<string>(nullable: true),
-                    RecipeId = table.Column<int>(nullable: false)
+                    RecipeId = table.Column<int>(nullable: false),
+                    TagId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.TagId);
+                    table.PrimaryKey("PK_RecipeTags", x => x.RecipeTagId);
                     table.ForeignKey(
-                        name: "FK_Tags_Recipes_RecipeId",
+                        name: "FK_RecipeTags_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "RecipeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RecipeTags_Tags_TagId",
+                        column: x => x.TagId,
+                        principalTable: "Tags",
+                        principalColumn: "TagId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -133,9 +152,14 @@ namespace Pandalicious.Migrations
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tags_RecipeId",
-                table: "Tags",
+                name: "IX_RecipeTags_RecipeId",
+                table: "RecipeTags",
                 column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeTags_TagId",
+                table: "RecipeTags",
+                column: "TagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -147,7 +171,7 @@ namespace Pandalicious.Migrations
                 name: "RecipeDirections");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "RecipeTags");
 
             migrationBuilder.DropTable(
                 name: "Ingredients");
@@ -157,6 +181,9 @@ namespace Pandalicious.Migrations
 
             migrationBuilder.DropTable(
                 name: "Recipes");
+
+            migrationBuilder.DropTable(
+                name: "Tags");
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Pandalicious.Controllers
         /// Allows the user to view all of the recipes
         /// </summary>
         /// <returns>All of the recipes view</returns>
-        [HttpGet]
+        [HttpGet, Route("AllRecipes")]
         public IActionResult Recipes()
         {
             var allRecipes = _context.Recipes.ToList();
@@ -44,6 +44,7 @@ namespace Pandalicious.Controllers
             ViewBag.Recipe = recipe;
             ViewBag.Ingredients = ingredients;
             ViewBag.Directions = directions;
+            ViewBag.Tags = recipe.Tags;
             return View();
         }
 
@@ -80,7 +81,7 @@ namespace Pandalicious.Controllers
             ViewBag.Directions = directions;
 
             // Find all of the tags for the recipe
-            var tags = _context.Tags.Where(x => x.RecipeId == id).ToList();
+            var tags = _context.RecipeTags.Include(t => t.Tag).Where(x => x.RecipeId == id).ToList();
             ViewBag.Tags = tags;
             return PartialView();
         }
@@ -88,7 +89,7 @@ namespace Pandalicious.Controllers
         [HttpGet, Route("Entrees")]
         public IActionResult Entrees()
         {
-            var entrees = _context.Tags.Where(x => x.TagName == "Entree").Select(r => r.Recipe).ToList();
+            var entrees = _context.RecipeTags.Include(t => t.Tag).Where(x => x.Tag.TagName == "Entree").Select(r => r.Recipe).ToList();
             ViewBag.Entrees = entrees;
             return View();
         }

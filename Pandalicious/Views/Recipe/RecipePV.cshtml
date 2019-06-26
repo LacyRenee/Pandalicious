@@ -17,6 +17,7 @@
                         <button class="genric-btn primary-border small" data-toggle="AddMealTooltip" data-placement="bottom" title="Saves the meal to your meal plan"><i class="fa fa-plus">  Meal Plan</i></button>
                         <button class="genric-btn primary-border small" data-toggle="AddShoppingListTooltip" data-placement="bottom" title="Adds all of the ingredients to your shopping list"><i class="fa fa-plus">  Shopping List</i></button>
                         <button class="genric-btn primary-border small"><i class="fa fa-print">  Print</i></button>
+                        <button id="deleteRecipe" value="@ViewBag.Recipe.RecipeId" class="genric-btn primary-border small"><i class="fa fa-trash">  Delete Recipe</i></button>
                     </div>
                     <ul class="list">
                         <li>
@@ -41,7 +42,7 @@
                             <p class="menu-item">Tags:</p>
                             @foreach (var t in ViewBag.Tags)
                             {
-                                <p>@t.TagName</p>
+                                <p>@t.Tag.TagName</p>
                             }
                         </li>
                     </ul>
@@ -52,8 +53,10 @@
 </div>
 
 @section scripts{
-<script>$(document).ready(function () {
-        $('[data-toggle="AddMealTooltip"]').tooltip();
-        $('[data-toggle="AddShoppingListTooltip"]').tooltip();
-    });</script>
+    <script type="text/javascript" src="/js/Recipe.js"></script>
+    <script>$(document).ready(function () {
+            $('[data-toggle="AddMealTooltip"]').tooltip();
+            $('[data-toggle="AddShoppingListTooltip"]').tooltip();
+        });</script>
+
 }

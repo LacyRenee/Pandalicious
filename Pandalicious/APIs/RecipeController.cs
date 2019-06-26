@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using Pandalicious.Models;
 using Pandalicious.Services;
 using static Pandalicious.Models.Model;
+using RecipeTags = Pandalicious.Models.RecipeTags;
 
 namespace Pandalicious.APIs
 {
@@ -18,6 +20,31 @@ namespace Pandalicious.APIs
         public RecipeController(PandaliciousContext context)
         {
             _context = context;
+        }
+
+        [HttpPost, Route("DeleteRecipe")]
+        public IActionResult DeleteRecipe([FromBody] int id)
+        {
+            var recipe = _context.Recipes.Find(id);
+
+            var directions = _context.RecipeDirections.Include(d => d.Direction).Where(x => x.DirectionId == recipe.RecipeId).ToList();
+
+            foreach(var d in directions)
+            {
+                _context.Directions.Remove(d.Direction);
+                _context.RecipeDirections.Remove(d);
+            }
+
+            var tags = _context.RecipeTags.Include(t => t.Tag).Where(x => x.RecipeId == recipe.RecipeId).ToList();
+            foreach(var t in tags)
+            {
+                _context.Tags.Remove(t.Tag);
+                _context.RecipeTags.Remove(t);
+            }
+
+            _context.Recipes.Remove(recipe);
+            _context.SaveChanges();
+            return Json(new { sucess = true });
         }
 
         [HttpGet, Route("IngredientList")]
@@ -144,94 +171,168 @@ namespace Pandalicious.APIs
                         }
                         break;
                     case "Keto":
-                        Tags ketoTag = new Tags()
+                        Tag ketoTag = new Tag()
                         {
-                            TagName = "Keto",
-                            RecipeId = newRecipe.RecipeId,
-                            Recipe = newRecipe
+                            TagName = "Keto"
                         };
 
                         _context.Tags.Add(ketoTag);
-                        break;
-                    case "Entree":
-                        Tags entreeTag = new Tags()
+
+                        RecipeTags ketokRecipeTag = new RecipeTags()
                         {
-                            TagName = "Entree",
+                            TagId = ketoTag.TagId,
+                            Tag = ketoTag,
                             RecipeId = newRecipe.RecipeId,
                             Recipe = newRecipe
+                        };
+
+                        _context.RecipeTags.Add(ketokRecipeTag);
+                        break;
+                    case "Entree":
+                        Tag entreeTag = new Tag()
+                        {
+                            TagName = "Entree"
                         };
 
                         _context.Tags.Add(entreeTag);
-                        break;
-                    case "Side":
-                        Tags sideTag = new Tags()
+
+                        RecipeTags entreekRecipeTag = new RecipeTags()
                         {
-                            TagName = "Side",
+                            TagId = entreeTag.TagId,
+                            Tag = entreeTag,
                             RecipeId = newRecipe.RecipeId,
                             Recipe = newRecipe
+                        };
+
+                        _context.RecipeTags.Add(entreekRecipeTag);
+                        break;
+                    case "Side":
+                        Tag sideTag = new Tag()
+                        {
+                            TagName = "Side"
                         };
 
                         _context.Tags.Add(sideTag);
-                        break;
-                    case "Dessert":
-                        Tags dessertTag = new Tags()
+
+                        RecipeTags sidekRecipeTag = new RecipeTags()
                         {
-                            TagName = "Dessert",
+                            TagId = sideTag.TagId,
+                            Tag = sideTag,
                             RecipeId = newRecipe.RecipeId,
                             Recipe = newRecipe
+                        };
+
+                        _context.RecipeTags.Add(sidekRecipeTag);
+                        break;
+                    case "Dessert":
+                        Tag dessertTag = new Tag()
+                        {
+                            TagName = "Dessert"
                         };
 
                         _context.Tags.Add(dessertTag);
-                        break;
-                    case "Chicken":
-                        Tags chickenTag = new Tags()
+
+                        RecipeTags dessertkRecipeTag = new RecipeTags()
                         {
-                            TagName = "Chicken",
+                            TagId = dessertTag.TagId,
+                            Tag = dessertTag,
                             RecipeId = newRecipe.RecipeId,
                             Recipe = newRecipe
+                        };
+
+                        _context.RecipeTags.Add(dessertkRecipeTag);
+                        break;
+                    case "Chicken":
+                        Tag chickenTag = new Tag()
+                        {
+                            TagName = "Chicken"
                         };
 
                         _context.Tags.Add(chickenTag);
-                        break;
-                    case "Pork":
-                        Tags porkTag = new Tags()
+
+                        RecipeTags chickenkRecipeTag = new RecipeTags()
                         {
-                            TagName = "Pork",
+                            TagId = chickenTag.TagId,
+                            Tag = chickenTag,
                             RecipeId = newRecipe.RecipeId,
                             Recipe = newRecipe
+                        };
+
+                        _context.RecipeTags.Add(chickenkRecipeTag);
+                        break;
+                    case "Pork":
+                        Tag porkTag = new Tag()
+                        {
+                            TagName = "Pork"
                         };
 
                         _context.Tags.Add(porkTag);
-                        break;
-                    case "Beef":
-                        Tags beefTag = new Tags()
+
+                        RecipeTags porkRecipeTag = new RecipeTags()
                         {
-                            TagName = "Beef",
+                            TagId = porkTag.TagId,
+                            Tag = porkTag,
                             RecipeId = newRecipe.RecipeId,
                             Recipe = newRecipe
+                        };
+
+                        _context.RecipeTags.Add(porkRecipeTag);
+                        break;
+                    case "Beef":
+                        Tag beefTag = new Tag()
+                        {
+                            TagName = "Beef"
                         };
 
                         _context.Tags.Add(beefTag);
-                        break;
-                    case "Fish":
-                        Tags fishTag = new Tags()
+
+                        RecipeTags beefRecipeTag = new RecipeTags()
                         {
-                            TagName = "Fish",
+                            TagId = beefTag.TagId,
+                            Tag = beefTag,
                             RecipeId = newRecipe.RecipeId,
                             Recipe = newRecipe
+                        };
+
+                        _context.RecipeTags.Add(beefRecipeTag);
+
+                        break;
+                    case "Fish":
+                        Tag fishTag = new Tag()
+                        {
+                            TagName = "Fish"
                         };
 
                         _context.Tags.Add(fishTag);
-                        break;
-                    case "Other":
-                        Tags otherTag = new Tags()
+
+                        RecipeTags fishRecipeTag = new RecipeTags()
                         {
-                            TagName = "Other",
+                            TagId = fishTag.TagId,
+                            Tag = fishTag,
                             RecipeId = newRecipe.RecipeId,
                             Recipe = newRecipe
                         };
 
+                        _context.RecipeTags.Add(fishRecipeTag);
+
+                        break;
+                    case "Other":
+                        Tag otherTag = new Tag()
+                        {
+                            TagName = "Other"
+                        };
+
                         _context.Tags.Add(otherTag);
+
+                        RecipeTags otherRecipeTag = new RecipeTags()
+                        {
+                            TagId = otherTag.TagId,
+                            Tag = otherTag,
+                            RecipeId = newRecipe.RecipeId,
+                            Recipe = newRecipe
+                        };
+
+                        _context.RecipeTags.Add(otherRecipeTag);
 
                         break;
                     default:

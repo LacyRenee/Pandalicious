@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Pandalicious.Services
 {
-    public static class RecipeTags
+    public static class RecipeTagsService
     {
         public static List<string> Tags { get; } = new List<string>()
         {

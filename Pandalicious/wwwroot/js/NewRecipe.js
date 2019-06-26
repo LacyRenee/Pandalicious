@@ -27,7 +27,7 @@ $("a#FinishRecipe").click(function () {
         contentType: "application/json",
         data: data,
         success: function (result) {
-           window.location.href = "/Recipe/Recipes";
+           window.location.href = "/Recipe/AllRecipes";
         }
     })
 })

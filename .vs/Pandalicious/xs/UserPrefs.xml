@@ -1,10 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{1DC062E5-3DE4-4974-AACC-27D3DA8B021C}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pandalicious Status">
     <Files>
-      <File FileName="Pandalicious/Controllers/RecipeController.cs" Line="47" Column="27" />
-      <File FileName="Pandalicious/Views/Recipe/NewRecipe.cshtml" Line="44" Column="27" />
-      <File FileName="Pandalicious/wwwroot/js/NewRecipe.js" Line="12" Column="37" />
-      <File FileName="Pandalicious/Views/Recipe/EditRecipe.cshtml" Line="57" Column="98" />
+      <File FileName="Pandalicious/Views/Recipe/RecipePV.cshtml" Line="20" Column="82" />
+      <File FileName="Pandalicious/wwwroot/js/Recipe.js" Line="11" Column="18" />
+      <File FileName="Pandalicious/APIs/RecipeController.cs" Line="42" Column="47" />
+      <File FileName="Pandalicious/wwwroot/js/NewRecipe.js" Line="30" Column="30" />
       <File FileName="Pandalicious Status" />
     </Files>
     <Pads>
@@ -12,18 +12,18 @@
         <State name="__root__">
           <Node name="Pandalicious" expanded="True">
             <Node name="Pandalicious" expanded="True">
-              <Node name="APIs" expanded="True" />
+              <Node name="APIs" expanded="True">
+                <Node name="RecipeController.cs" selected="True" />
+              </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Recipe" expanded="True">
-                  <Node name="NewRecipe.cshtml" selected="True" />
-                </Node>
+                <Node name="Recipe" expanded="True" />
                 <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True" />
                 <Node name="js" expanded="True" />
               </Node>
             </Node>
