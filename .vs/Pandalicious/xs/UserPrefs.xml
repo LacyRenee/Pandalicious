@@ -1,10 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{1DC062E5-3DE4-4974-AACC-27D3DA8B021C}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pandalicious Status">
     <Files>
-      <File FileName="Pandalicious/Views/Recipe/RecipePV.cshtml" Line="20" Column="82" />
-      <File FileName="Pandalicious/wwwroot/js/Recipe.js" Line="11" Column="18" />
-      <File FileName="Pandalicious/APIs/RecipeController.cs" Line="42" Column="47" />
-      <File FileName="Pandalicious/wwwroot/js/NewRecipe.js" Line="30" Column="30" />
+      <File FileName="Pandalicious/Views/Recipe/NewRecipe.cshtml" Line="22" Column="63" />
+      <File FileName="Pandalicious/wwwroot/js/NewRecipe.js" Line="124" Column="22" />
+      <File FileName="Pandalicious/wwwroot/css/main.css" Line="77" Column="29" />
       <File FileName="Pandalicious Status" />
     </Files>
     <Pads>
@@ -12,9 +11,7 @@
         <State name="__root__">
           <Node name="Pandalicious" expanded="True">
             <Node name="Pandalicious" expanded="True">
-              <Node name="APIs" expanded="True">
-                <Node name="RecipeController.cs" selected="True" />
-              </Node>
+              <Node name="APIs" expanded="True" />
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True" />
@@ -24,6 +21,9 @@
                 <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True">
+                  <Node name="main.css" selected="True" />
+                </Node>
                 <Node name="js" expanded="True" />
               </Node>
             </Node>

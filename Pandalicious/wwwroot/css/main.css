@@ -74,7 +74,7 @@ textarea::-webkit-input-placeholder, .form-control::-webkit-input-placeholder, b
 input:focus,
 textarea:focus, .form-control:focus, button:focus {
     box-shadow: none !important;
-    outline: none !important;
+    outline: solid 1px green;
 }
 
 

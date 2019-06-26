@@ -59,8 +59,9 @@
                                 <button id="AddButtonId0" type="button" class="genric-btn success-border AddIngredient">Add</button>
                                 <datalist id="ListOfIngredients"></datalist>
                             </div>
-                            <div id="template"></div>
+
                         }
+                        <div id="template"></div>
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -84,25 +85,29 @@
                         </div>
                         <div class="row">
                             @{
-                                foreach (var t in RecipeTagsService.Tags)
+                                foreach (var rts in RecipeTagsService.Tags)
                                 {
-                                    if (ViewBag.Tags.Contains(t))
+                                    foreach (var tag in ViewBag.Tags)
                                     {
-                                        <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                                        <div class="col-lg-2 col-md-6 col-sm-12">
-                                            <label> @t</label>
-                                            <input checked name="@t" class="checkbox-primary input" type="checkbox">
-                                        </div>
+                                        if (tag.Tag.TagName == rts)
+                                        {
+                                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                                            <div class="col-lg-2 col-md-6 col-sm-12">
+                                                <label> @rts</label>
+                                                <input checked name="@rts" class="checkbox-primary input" type="checkbox">
+                                            </div>
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                                            <div class="col-lg-2 col-md-6 col-sm-12">
+                                                <label> @rts</label>
+                                                <input name="@rts" class="checkbox-primary input" type="checkbox">
+                                            </div>
+                                            break;
+                                        }
                                     }
-                                    else
-                                    {
-                                        <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                                        <div class="col-lg-2 col-md-6 col-sm-12">
-                                            <label> @t</label>
-                                            <input name="@t" class="checkbox-primary input" type="checkbox">
-                                        </div>
-                                    }
-
                                 }
                             }
                         </div>

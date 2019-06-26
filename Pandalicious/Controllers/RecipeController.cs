@@ -40,11 +40,12 @@ namespace Pandalicious.Controllers
             var recipe = _context.Recipes.Where(x => x.RecipeId == id).First();
             var ingredients = _context.Menus.Include(i => i.Ingredient).Where(x => x.RecipeId == id).ToList();
             var directions = _context.RecipeDirections.Include(d => d.Direction).Where(x => x.RecipeId == id).ToList();
+            var tags = _context.RecipeTags.Include(t => t.Tag).Where(x => x.RecipeId == id).ToList();
 
             ViewBag.Recipe = recipe;
             ViewBag.Ingredients = ingredients;
             ViewBag.Directions = directions;
-            ViewBag.Tags = recipe.Tags;
+            ViewBag.Tags = tags;
             return View();
         }
 

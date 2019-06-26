@@ -1,6 +1,7 @@
 ﻿// This class provides a list of tags that can be used to idenfity recipes
 
 using System.Collections.Generic;
+using Pandalicious.Models;
 
 namespace Pandalicious.Services
 {
