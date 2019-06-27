@@ -95,15 +95,51 @@ namespace Pandalicious.Controllers
             return View();
         }
 
+        [HttpGet, Route("Entrees/Beef")]
+        public IActionResult BeefEntrees()
+        {
+            var entrees = _context.RecipeTags.Include(t => t.Tag).Where(x => x.Tag.TagName == "Entree" && x.Tag.TagName == "Beef").Select(r => r.Recipe).ToList();
+            ViewBag.Entrees = entrees;
+            return View();
+        }
+
+        [HttpGet, Route("Entrees/Chicken")]
+        public IActionResult ChickenEntrees()
+        {
+            var entrees = _context.RecipeTags.Include(t => t.Tag).Where(x => x.Tag.TagName == "Entree" && x.Tag.TagName == "Chicken").Select(r => r.Recipe).ToList();
+            ViewBag.Entrees = entrees;
+            return View();
+        }
+
+        [HttpGet, Route("Entrees/Fish")]
+        public IActionResult FishEntrees()
+        {
+            var entrees = _context.RecipeTags.Include(t => t.Tag).Where(x => x.Tag.TagName == "Entree" && x.Tag.TagName == "Fish").Select(r => r.Recipe).ToList();
+            ViewBag.Entrees = entrees;
+            return View();
+        }
+
+        [HttpGet, Route("Entrees/Other")]
+        public IActionResult OtherEntrees()
+        {
+            var entrees = _context.RecipeTags.Include(t => t.Tag).Where(x => x.Tag.TagName == "Entree" && x.Tag.TagName == "Other").Select(r => r.Recipe).ToList();
+            ViewBag.Entrees = entrees;
+            return View();
+        }
+
         [HttpGet, Route("Sides")]
         public IActionResult Sides()
         {
+            var sides = _context.RecipeTags.Include(t => t.Tag).Where(x => x.Tag.TagName == "Side").Select(r => r.Recipe).ToList();
+            ViewBag.Sides = sides;
             return View();
         }
 
         [HttpGet, Route("Desserts")]
         public IActionResult Desserts()
         {
+            var desserts = _context.RecipeTags.Include(t => t.Tag).Where(x => x.Tag.TagName == "Dessert").Select(r => r.Recipe).ToList();
+            ViewBag.Desserts = desserts;
             return View();
         }
     }

@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers;
+<!DOCTYPE html>
 <html lang="zxx" class="no-js">
+
 
 <head>
     <!-- Mobile Specific Meta -->
@@ -57,7 +59,7 @@
                         <div class="collapse navbar-collapse menu-right" id="collapsibleNavbar">
                             <ul class="navbar-nav justify-content-center w-100">
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Recipe" asp-action="Recipes" >Recipes</a>
+                                    <a class="nav-link" asp-controller="Recipe" asp-action="Recipes">Recipes</a>
                                 </li>
                                 <li class="nav-item">
                                     <a asp-controller="Home" asp-action="Ingredients" class="nav-link">Ingredients</a>
@@ -73,7 +75,6 @@
         </div>
     </header>
     <!--================ End Header Area =================-->
-
     <!--================ Start render body =================-->
     <div class="container">
         <main role="main" class="pb-3">
@@ -109,7 +110,17 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a asp-controller="Recipe" asp-action="Entrees"><span>Entrees</span></a></li>
+                    <li class="active has-sub">
+                        <a><span>Entrees</span></a>
+                        <ul>
+                            <li><a asp-controller="Recipe" asp-action="Entrees"><span>All Entrees</span></a></li>
+                            <li><a asp-controller="Recipe" asp-action="BeefEntrees"><span>Beef</span></a></li>
+                            <li><a asp-controller="Recipe" asp-action="ChickenEntrees"><span>Chicken</span></a></li>
+                            <li><a asp-controller="Recipe" asp-action="FishEntrees"><span>Fish</span></a></li>
+                            <li><a asp-controller="Recipe" asp-action="PorkEntrees"><span>Pork</span></a></li>
+                            <li class='last'><a asp-controller="Recipe" asp-action="OtherEntrees"><span>Other</span></a></li>
+                        </ul>
+                    </li>
                     <li><a asp-controller="Recipe" asp-action="Sides"><span>Sides</span></a></li>
                     <li class='last'><a asp-controller="Recipe" asp-action="Desserts"><span>Dessert</span></a></li>
                 </ul>
@@ -120,8 +131,10 @@
     <!--================ End render body=================-->
     <!--================ Start Footer Area =================-->
     <footer style="bottom:0; position:fixed; width:100%;" class="footer-area">
-        <p class="footer-text m-0 col-lg-6 col-md-12">Copyright © 2018 All rights reserved | This template is made with
-        <span class="lnr lnr-heart"></span> by <a >Colorlib</a></p>
+        <p class="footer-text m-0 col-lg-6 col-md-12">
+            Copyright © 2018 All rights reserved | This template is made with
+            <span class="lnr lnr-heart"></span> by <a>Colorlib</a>
+        </p>
     </footer>
     <!--================ End Footer Area =================-->
 
@@ -139,10 +152,9 @@
     <script src="~/js/bootstrap-datepicker.js"></script>
     <script src="~/js/main.js"></script>
     <script type="text/javascript" charset="utf8" src="~/DataTables/datatables.js"></script>
-    <script>
-        ( function( $ ) {
-            $( document ).ready(function() {
-            $('#cssmenu li.has-sub>a').on('click', function(){
+    <script>(function ($) {
+            $(document).ready(function () {
+                $('#cssmenu li.has-sub>a').on('click', function () {
                     $(this).removeAttr('href');
                     var element = $(this).parent('li');
                     if (element.hasClass('open')) {
@@ -160,8 +172,7 @@
                     }
                 });
             });
-        } )( jQuery );
-    </script>
+        })(jQuery);</script>
     @RenderSection("Scripts", required: false)
 </body>
 

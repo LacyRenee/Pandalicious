@@ -1,32 +1,29 @@
 ﻿@model Pandalicious.Models.Recipe;
 
 @{
-    ViewData["Title"] = "Sides";
+    ViewData["Title"] = "My Lists";
 }
 
-<div class="recipesPage">
-    <div class="row height ml-10">
-        <h3 class="mb-10 center">List of Side Recipes</h3>
+<div class="">
+    <div class="row height ml-5">
+        <h3 class="mb-10 center">List of All Notes</h3>
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 ">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 DataTableForAllRecipes">
-                    <a asp-controller="Recipe" asp-action="NewRecipe" class="genric-btn primary-border small circle">Add Recipe</a>
+                    <a  class="genric-btn primary-border small circle">Add Note</a>
 
-                    <table id="AllRecipeTable" class="table-bordered table-striped">
+                    <table id="AllNoteTable" class="table-bordered table-striped">
                         <thead>
                             <tr class="table-row">
                                 <th>Recipe Name</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var r in ViewBag.Sides)
-                            {
                                 <tr class="table-row">
-                                    <td><a class="ListOfRecipes" data-recipeID="@r.RecipeId">@r.RecipeName</a></td>
+                                    <td><a class="ListOfRecipes">Example Note</a></td>
                                 </tr>
-                            }
                         </tbody>
                     </table>
                 </div>
@@ -46,7 +43,7 @@
 
 
     <script type="text/javascript" charset="utf8">$(document).ready(function () {
-            $('#AllRecipeTable').DataTable({
+            $('#AllNoteTable').DataTable({
                 "order": [0, 'asc'],
                 "columnDefs": [
                     { "orderable": false }

@@ -53,7 +53,6 @@
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/About.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/Ingredients.g.cshtml.cs
-/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/MyList.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Home/_ViewStart.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/NewRecipe.g.cshtml.cs
@@ -76,3 +75,10 @@
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Sides.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/Desserts.g.cshtml.cs
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/EditRecipe.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/BeefEntrees.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/ChickenEntrees.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/FishEntrees.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/OtherEntrees.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Recipe/PorkEntrees.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/List/_ViewStart.g.cshtml.cs
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/List/List.g.cshtml.cs

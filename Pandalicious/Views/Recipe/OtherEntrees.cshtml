@@ -1,12 +1,12 @@
 ﻿@model Pandalicious.Models.Recipe;
 
 @{
-    ViewData["Title"] = "Sides";
+    ViewData["Title"] = "Entrees - Other";
 }
 
 <div class="recipesPage">
     <div class="row height ml-10">
-        <h3 class="mb-10 center">List of Side Recipes</h3>
+        <h3 class="mb-10 center">List of Other Entrees</h3>
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 ">
@@ -21,7 +21,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var r in ViewBag.Sides)
+                            @foreach (var r in ViewBag.Entrees)
                             {
                                 <tr class="table-row">
                                     <td><a class="ListOfRecipes" data-recipeID="@r.RecipeId">@r.RecipeName</a></td>

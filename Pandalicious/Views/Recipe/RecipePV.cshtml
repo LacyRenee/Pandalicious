@@ -28,7 +28,11 @@
                             <p class="menu-item">Ingredients:</p>
                             @foreach (var i in ViewBag.Ingredients)
                             {
-                                <p>@i.MenuMeasurement @i.Ingredient.IngredientName</p>
+                                <div class="row">
+                                    <button data-toggle="AddIngredientToolTip" data-placement="bottom" title="Adds the selected ingredient to the shopping list" class="genric-btn primary-border small"><i class="fa fa-plus"> </i></button> &nbsp;
+                                    <p>@i.MenuMeasurement @i.Ingredient.IngredientName</p>
+
+                                </div>
                             }
                         </li>
                         <li>
@@ -57,6 +61,7 @@
     <script>$(document).ready(function () {
             $('[data-toggle="AddMealTooltip"]').tooltip();
             $('[data-toggle="AddShoppingListTooltip"]').tooltip();
+            $('[data-toggle="AddIngredientToolTip"]').tooltip();
         });</script>
 
 }
