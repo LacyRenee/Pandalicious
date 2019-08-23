@@ -73,6 +73,8 @@ namespace Pandalicious.Migrations
 
                     b.Property<string>("RecipeName");
 
+                    b.Property<string>("RecipeNotes");
+
                     b.Property<int>("RecipeServings");
 
                     b.HasKey("RecipeId");

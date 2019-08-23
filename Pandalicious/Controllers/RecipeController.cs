@@ -87,6 +87,7 @@ namespace Pandalicious.Controllers
             return PartialView();
         }
 
+        #region meal categories (entrees[beef, chicken, fish, etcc...], sides, dessert)
         [HttpGet, Route("Entrees")]
         public IActionResult Entrees()
         {
@@ -142,5 +143,6 @@ namespace Pandalicious.Controllers
             ViewBag.Desserts = desserts;
             return View();
         }
+        #endregion meal categories 
     }
 }

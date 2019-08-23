@@ -170,6 +170,9 @@ namespace Pandalicious.APIs
                             newRecipeDirections.Recipe = newRecipe;
                         }
                         break;
+                    case "RecipeNotes":
+                        newRecipe.RecipeNotes = parsedObject.GetValue("value").ToString();
+                        break;
                     case "Keto":
                         Tag ketoTag = new Tag()
                         {

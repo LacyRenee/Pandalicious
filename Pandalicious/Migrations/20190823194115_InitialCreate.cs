@@ -43,7 +43,8 @@ namespace Pandalicious.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     RecipeName = table.Column<string>(nullable: true),
                     RecipeServings = table.Column<int>(nullable: false),
-                    RecipeDuration = table.Column<string>(nullable: true)
+                    RecipeDuration = table.Column<string>(nullable: true),
+                    RecipeNotes = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

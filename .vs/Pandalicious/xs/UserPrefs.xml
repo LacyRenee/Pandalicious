@@ -1,9 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{1DC062E5-3DE4-4974-AACC-27D3DA8B021C}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Pandalicious Status">
     <Files>
-      <File FileName="Pandalicious/Controllers/ListController.cs" Line="35" Column="6" />
-      <File FileName="Pandalicious/Views/List/List.cshtml" Line="18" Column="32" />
-      <File FileName="Pandalicious/Views/Home/About.cshtml" Line="1" Column="1" />
+      <File FileName="Pandalicious/Views/Recipe/EditRecipe.cshtml" Line="77" Column="35" />
+      <File FileName="Pandalicious/Views/Recipe/NewRecipe.cshtml" Line="66" Column="62" />
+      <File FileName="Pandalicious/wwwroot/js/NewRecipe.js" Line="1" Column="1" />
+      <File FileName="Pandalicious/Controllers/RecipeController.cs" Line="90" Column="9" />
       <File FileName="Pandalicious Status" />
     </Files>
     <Pads>
@@ -12,15 +13,18 @@
           <Node name="Pandalicious" expanded="True">
             <Node name="Pandalicious" expanded="True">
               <Node name="APIs" expanded="True" />
-              <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="rooftop_original" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="RecipeController.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
               <Node name="Services" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
                 <Node name="List" expanded="True" />
                 <Node name="Recipe" expanded="True" />
                 <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="js" expanded="True" />
               </Node>
             </Node>
           </Node>
