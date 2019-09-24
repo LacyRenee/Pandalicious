@@ -173,6 +173,7 @@ namespace Pandalicious.APIs
                     case "RecipeNotes":
                         newRecipe.RecipeNotes = parsedObject.GetValue("value").ToString();
                         break;
+                    #region recipeTags
                     case "Keto":
                         Tag ketoTag = new Tag()
                         {
@@ -338,6 +339,7 @@ namespace Pandalicious.APIs
                         _context.RecipeTags.Add(otherRecipeTag);
 
                         break;
+                    #endregion
                     default:
                         throw new Exception("Property not found");
                 }
@@ -352,8 +354,15 @@ namespace Pandalicious.APIs
         [HttpPost, Route("SaveRecipe")]
         public IActionResult SaveRecipe([FromBody] JArray data)
         {
+            // Parse the JArray
             JArray parsedArray = JArray.Parse(data.ToString());
+
+            int directionStep = 0;
             int id = 0;
+            string ingredientValue = string.Empty;
+            string ingredientName = string.Empty;
+
+            // Find the recipe
             foreach (JObject parsedObject in parsedArray)
             {
                 string propertyName = parsedObject.GetValue("name").ToString();
@@ -362,21 +371,68 @@ namespace Pandalicious.APIs
 
             }
             Recipe recipe = _context.Recipes.Find(id);
+
+            // Find and delete all associated ingredients
             var ingredients = _context.Menus.Include(i => i.Ingredient).Where(x => x.RecipeId == recipe.RecipeId).ToList();
+
+            // Find and delete all associated directions
             var directions = _context.RecipeDirections.Include(d => d.Direction).Where(x => x.RecipeId == recipe.RecipeId).ToList();
+            foreach (var d in directions)
+            {
+                _context.Directions.Remove(d.Direction);
+                _context.RecipeDirections.Remove(d);
+            }
+
+            // Find and delete all associated ingredients
             var tags = _context.RecipeTags.Include(t => t.Tag).Where(x => x.RecipeId == recipe.RecipeId).ToList();
-            string ingredientValue = string.Empty;
-            string ingredientName = string.Empty;
-        
-            // Loop through the form data and create the recipe model 
+            
+            // Loop through the form data and edit the recipe model 
             foreach (JObject parsedObject in parsedArray)
             {
-      
                 string propertyName = parsedObject.GetValue("name").ToString();
                 if (propertyName == null)
                     propertyName = String.Empty;
                 switch (propertyName)
                 {
+                    case "RecipeName":
+                        if (parsedObject.GetValue("value").ToString() == String.Empty)
+                        {
+                            recipe.RecipeName = "Unnamed Recipe";
+                        }
+                        else
+                        {
+                            recipe.RecipeName = parsedObject.GetValue("value").ToString();
+                        }
+                        break;
+                    case "RecipeServings":
+                        if (parsedObject.GetValue("value").ToString() != String.Empty)
+                        {
+                            recipe.RecipeServings = int.Parse(parsedObject.GetValue("value").ToString());
+                        }
+                        break;
+                    case "RecipeDuration":
+                        recipe.RecipeDuration = parsedObject.GetValue("value").ToString();
+                        break;
+                    case "RecipeDirection":
+                        if (parsedObject.GetValue("value").ToString() != String.Empty)
+                        {
+                            Direction newDirection = new Direction
+                            {
+                                DirectionStep = ++directionStep,
+                                DirectionDescription = parsedObject.GetValue("value").ToString()
+                            };
+                            _context.Directions.Add(newDirection);
+                            _context.SaveChanges();
+
+                            RecipeDirections newRecipeDirections = new RecipeDirections();
+                            _context.RecipeDirections.Add(newRecipeDirections);
+
+                            newRecipeDirections.DirectionId = newDirection.DirectionId;
+                            newRecipeDirections.Direction = newDirection;
+                            newRecipeDirections.RecipeId = recipe.RecipeId;
+                            newRecipeDirections.Recipe = recipe;
+                        }
+                        break;
                     case "RecipeNotes":
                         recipe.RecipeNotes = parsedObject.GetValue("value").ToString();
                         break;
