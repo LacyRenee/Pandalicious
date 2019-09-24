@@ -2,6 +2,7 @@
 var DirectionViewCount = 0;
 
 // Counts how many ingredient views are currently on the form
+
 function CountInstructorViews() {
     var viewCounts = $(".RemoveIngredient").length;
     if (viewCounts == 1) {
@@ -20,7 +21,9 @@ function CountInstructorViews() {
     }
 }
 
+
 // Counts how many direction views are currently on the form
+
 function CountDirectionViews() {
     var viewCounts = $(".RemoveDirection").length;
     if (viewCounts == 1) {
@@ -39,7 +42,9 @@ function CountDirectionViews() {
     }
 }
 
+
 // Displays a recipe when it is clicked from the table
+
 $("a.ListOfRecipes").click(function () {
     var id = $(this).attr("data-recipeID");
     $.ajax({
@@ -53,11 +58,12 @@ $("a.ListOfRecipes").click(function () {
     })
 })
 
+
 // Create the recipe
+
 $("a#FinishRecipe").click(function () {
     var recipe = $("#RecipeForm").serializeArray();
     var data = JSON.stringify(recipe);
-    var count = 1;
     $.ajax({
         url: "/api/Recipe/CreateRecipe",
         type: "POST",
@@ -69,7 +75,24 @@ $("a#FinishRecipe").click(function () {
     })
 })
 
+// Save the edited recipe
+$("a#SaveRecipe").click(function () {
+    var recipe = $("#RecipeForm").serializeArray();
+    var data = JSON.stringify(recipe);
+    console.log(data)
+    $.ajax({
+        url: "/api/Recipe/SaveRecipe",
+        type: "POST",
+        contentType: "application/json",
+        data: data,
+        success: function (result) {
+           window.location.href = "/Recipe/AllRecipes";
+        }
+    })
+})
+
 // Populates the DataList with all of the ingredients from the database
+
 $(document).ready(function () {
    $.ajax({
         url: "/api/Recipe/IngredientList/",
@@ -88,7 +111,9 @@ $(document).ready(function () {
     })
 })
 
+
 // Adds a direction template to the form
+
 $(document).on("click", ".AddDirection", function(){
 
     var divID = "DirectionView"+ DirectionViewCount;
@@ -116,7 +141,9 @@ $(document).on("click", ".AddDirection", function(){
 
 });
 
+
 // Removes the direction template from the form
+
 $(document).on("click", ".RemoveDirection", function () {
     var id = jQuery(this).attr("id").match(/\d+/g);
     var directionView = document.getElementById("DirectionView" + id);
@@ -126,7 +153,9 @@ $(document).on("click", ".RemoveDirection", function () {
 
 })
 
+
 // Adds an ingredient template to the form
+
 $(document).on("click", ".AddIngredient", function(){
 
     var divID = "IngredientView"+ IngredientViewCount;
@@ -151,7 +180,9 @@ $(document).on("click", ".AddIngredient", function(){
 
 });
 
+
 // Removes the ingredient template from the form
+
 $(document).on("click", ".RemoveIngredient", function () {
     var id = jQuery(this).attr("id").match(/\d+/g);
     var view = document.getElementById("IngredientView" + id);
@@ -160,7 +191,9 @@ $(document).on("click", ".RemoveIngredient", function () {
 
 })
 
+
 // Iterates through the directions and renumbers them
+
 function NumberDirections() {
     var directions = document.getElementsByClassName("directionCount");
 

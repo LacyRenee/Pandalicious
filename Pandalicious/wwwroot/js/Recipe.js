@@ -1,7 +1,7 @@
 ﻿var IngredientViewCount = 0;
 var DirectionViewCount = 0;
 
-
+// Allows the user to delete a recipe 
 $(document).on("click", "button#deleteRecipe", function () {
     var id = $(this).val();
     $.ajax({

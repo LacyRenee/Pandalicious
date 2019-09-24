@@ -13,6 +13,7 @@
                         <div class="row">
                             <div class="section-title relative">
                                 <h2>Recipe Details</h2>
+                                <input name="RecipeId" hidden value="@ViewBag.Recipe.RecipeId" />
                             </div>
                         </div>
                     </div>
@@ -123,7 +124,7 @@
                     <div class="form-group">
                         <div class="row">
                             <a class="genric-btn primary-border" asp-controller="Recipe" asp-action="Recipes">Cancel</a> &nbsp;
-                            <a id="FinishRecipe" class="genric-btn success-border">Finish</a>
+                            <a id="SaveRecipe" class="genric-btn success-border">Save</a>
                         </div>
                     </div>
                 </form>

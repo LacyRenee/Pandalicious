@@ -348,5 +348,46 @@ namespace Pandalicious.APIs
 
             return Json(new { success = true });
         }
+
+        [HttpPost, Route("SaveRecipe")]
+        public IActionResult SaveRecipe([FromBody] JArray data)
+        {
+            JArray parsedArray = JArray.Parse(data.ToString());
+            int id = 0;
+            foreach (JObject parsedObject in parsedArray)
+            {
+                string propertyName = parsedObject.GetValue("name").ToString();
+                if (propertyName == "RecipeId")
+                    id = Int32.Parse(parsedObject.GetValue("value").ToString());
+
+            }
+            Recipe recipe = _context.Recipes.Find(id);
+            var ingredients = _context.Menus.Include(i => i.Ingredient).Where(x => x.RecipeId == recipe.RecipeId).ToList();
+            var directions = _context.RecipeDirections.Include(d => d.Direction).Where(x => x.RecipeId == recipe.RecipeId).ToList();
+            var tags = _context.RecipeTags.Include(t => t.Tag).Where(x => x.RecipeId == recipe.RecipeId).ToList();
+            string ingredientValue = string.Empty;
+            string ingredientName = string.Empty;
+        
+            // Loop through the form data and create the recipe model 
+            foreach (JObject parsedObject in parsedArray)
+            {
+      
+                string propertyName = parsedObject.GetValue("name").ToString();
+                if (propertyName == null)
+                    propertyName = String.Empty;
+                switch (propertyName)
+                {
+                    case "RecipeNotes":
+                        recipe.RecipeNotes = parsedObject.GetValue("value").ToString();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            _context.SaveChanges();
+
+            return Json(new { success = true });
+        }
     }
 }
