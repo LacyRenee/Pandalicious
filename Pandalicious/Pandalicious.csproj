@@ -7,9 +7,12 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.App">
+      <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+      <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="2.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
@@ -128,7 +131,6 @@
     <Content Remove="wwwroot\img\gallery\g2.jpg" />
     <Content Remove="wwwroot\img\gallery\g3.jpg" />
     <Content Remove="wwwroot\img\gallery\g4.jpg" />
-    <Content Remove="Views\Shared\_Layout.cshtml" />
     <Content Remove="Views\Home\About %28copy%29.cshtml" />
     <Content Remove="Views\Home\Ingredient.cshtml" />
     <Content Remove="wwwroot\DataTables\datatables.css" />
@@ -287,7 +289,6 @@
     <None Include="wwwroot\img\gallery\g2.jpg" />
     <None Include="wwwroot\img\gallery\g3.jpg" />
     <None Include="wwwroot\img\gallery\g4.jpg" />
-    <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="wwwroot\DataTables\datatables.css" />
     <None Include="wwwroot\DataTables\datatables.js" />
     <None Include="wwwroot\DataTables\datatables.min.css" />
@@ -329,5 +330,11 @@
     <Folder Include="Services\" />
     <Folder Include="Views\Recipe\" />
     <Folder Include="Views\List\" />
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Shared\_Layout.cshtml">
+      <IncludeInPackage>false</IncludeInPackage>
+    </Content>
   </ItemGroup>
 </Project>
