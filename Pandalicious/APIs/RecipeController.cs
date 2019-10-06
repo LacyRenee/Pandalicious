@@ -72,7 +72,8 @@ namespace Pandalicious.APIs
             _context.SaveChanges();
 
             string ingredientValue = string.Empty;
-            string ingredientName = string.Empty;
+            string ingredientUnit  = string.Empty;
+            string ingredientName  = string.Empty;
 
             int directionStep = 0;
 
@@ -107,7 +108,7 @@ namespace Pandalicious.APIs
                         ingredientValue = parsedObject.GetValue("value").ToString() + " ";
                         break;
                     case "IngredientUnit":
-                        ingredientValue += parsedObject.GetValue("value").ToString();
+                        ingredientUnit += parsedObject.GetValue("value").ToString();
                         break;
                     case "IngredientName":
                         if (parsedObject.GetValue("value").ToString() != String.Empty)
@@ -120,7 +121,8 @@ namespace Pandalicious.APIs
 
                                 Menu newItem = new Menu()
                                 {
-                                    MenuMeasurement = ingredientValue,
+                                    MenuUnit = ingredientUnit,
+                                    MenuValue = ingredientValue,
                                     IngredientId = existingIngredient.IngredientId,
                                     RecipeId = newRecipe.RecipeId
                                 };
@@ -140,7 +142,8 @@ namespace Pandalicious.APIs
 
                                 Menu newItem = new Menu()
                                 {
-                                    MenuMeasurement = ingredientValue,
+                                    MenuUnit = ingredientUnit,
+                                    MenuValue = ingredientValue,
                                     IngredientId = newIngredient.IngredientId,
                                     Ingredient = newIngredient,
                                     RecipeId = newRecipe.RecipeId

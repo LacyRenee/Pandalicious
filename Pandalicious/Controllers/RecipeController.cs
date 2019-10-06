@@ -47,9 +47,7 @@ namespace Pandalicious.Controllers
             ViewBag.Directions = directions;
             ViewBag.Tags = tags;
             return View();
-        }
-
-       
+        }    
 
         /// <summary>
         /// Allows the user to create a new recipe

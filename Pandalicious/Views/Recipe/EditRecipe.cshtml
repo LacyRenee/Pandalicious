@@ -17,12 +17,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--Recipe Name-->
                     <div class="form-group">
                         <div class="row">
                             <label class="col-lg-1 col-md-1 col-sm-1" style="font-weight:bold;">Recipe Name:</label>
                             <input name="RecipeName" value="@ViewBag.Recipe.RecipeName" placeholder="Enter Recipe Name" class="col-lg-6 col-md-6 col-sm-12 form-control" type="text" />
                         </div>
                     </div>
+
+                    <!--Recipe Servings-->
                     <div class="form-group">
                         <div class="row">
                             <label class="col-lg-1 col-md-1" style="font-weight:bold;">Servings:</label>
@@ -31,6 +35,8 @@
                             <input name="RecipeDuration" value="@ViewBag.Recipe.RecipeDuration" class="col-lg-2 col-md-2" placeholder="Enter recipe time" type="text" />
                         </div>
                     </div>
+
+                    <!--Recipe Ingredients-->
                     <div class="form-group">
                         <div class="row">
                             <label class="col-lg-1 col-md-1 col-sm-1" style="font-weight:bold;">Ingredients:</label>
@@ -39,9 +45,9 @@
                         {
                             <div id="IngredientView0" class="row IngredientView">
                                 <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                                <input name="IngredientValue" value="@i.MenuMeasurement.Split(" ")[0]" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
+                                <input name="IngredientValue" value="@i.MenuValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
                                 <select name="IngredientUnit" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
-                                    <option value="@i.MenuMeasurement.Split(" ")[0]">@i.MenuMeasurement.Split(" ")[1]</option>
+                                    <option value="@i.MenuValue">@i.MenuUnit</option>
                                     <optgroup label="Volume">
                                         @foreach (var u in UnitsOfMeasurement.UnitsVolume)
                                         {

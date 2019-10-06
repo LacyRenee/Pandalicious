@@ -9,7 +9,8 @@ namespace Pandalicious.Models
         [Key]
         public int MenuId { get; set; }
 
-        public string MenuMeasurement { get; set; }
+        public string MenuValue { get; set; }
+        public string MenuUnit { get; set; }
 
         [ForeignKey("RecipeId")]
         public int RecipeId { get; set; }
