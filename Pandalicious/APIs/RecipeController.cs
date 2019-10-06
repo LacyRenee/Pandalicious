@@ -102,7 +102,7 @@ namespace Pandalicious.APIs
                         }
                         break;
                     case "RecipeDuration":
-                        newRecipe.RecipeDuration = parsedObject.GetValue("value").ToString();
+                            newRecipe.RecipeDuration = parsedObject.GetValue("value").ToString();
                         break;
                     case "IngredientValue":
                         ingredientValue = parsedObject.GetValue("value").ToString() + " ";

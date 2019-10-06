@@ -41,8 +41,36 @@
                         <div class="row">
                             <label class="col-lg-1 col-md-1 col-sm-1" style="font-weight:bold;">Ingredients:</label>
                         </div>
-                        @foreach (var i in ViewBag.Ingredients)
+                        @if (ViewBag.Ingredients.Count == 0)
                         {
+                            <div id="IngredientView0" class="row IngredientView">
+                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                            <input name="IngredientValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
+                            <select name="IngredientUnit" id="IngredientUnitDropdownList" class="col-lg-1 col-md-1 col-sm-1">
+                                <option value="">--</option>
+                                <optgroup label="Volume">
+                                    @foreach (var u in UnitsOfMeasurement.UnitsVolume)
+                                    {
+                                        <option value="@u">@u</option>
+                                    }
+                                </optgroup>
+                                <optgroup label="Weight">
+                                    @foreach (var u in UnitsOfMeasurement.UnitsWeight)
+                                    {
+                                        <option value="@u">@u</option>
+                                    }
+                                </optgroup>
+                            </select>
+                            <input name="IngredientName" class="col-lg-3 col-md-3 col-sm-3" list="ListOfIngredients" placeholder="Find ingredient" type="text" /> &nbsp;
+                            <button id="removeButtonID0" type="button" class="genric-btn danger-border RemoveIngredient">Remove</button> &nbsp;
+                            <button id="AddButtonId0" type="button" class="genric-btn success-border AddIngredient">Add</button>
+                            <datalist id="ListOfIngredients"></datalist>
+                        </div>
+                        }
+                        else
+                        {
+                            foreach (var i in ViewBag.Ingredients)
+                            {
                             <div id="IngredientView0" class="row IngredientView">
                                 <div class="col-lg-1 col-md-1 col-sm-1"></div>
                                 <input name="IngredientValue" value="@i.MenuValue" class="col-lg-1 col-md-1 col-sm-1" placeholder="Value" type="number" min="0.1" /> &nbsp;
@@ -67,6 +95,7 @@
                                 <datalist id="ListOfIngredients"></datalist>
                             </div>
 
+                            }
                         }
                         <div id="template"></div>
                     </div>
@@ -74,8 +103,19 @@
                         <div class="row">
                             <label class="col-lg-1 col-md-1 col-sm-1" style="font-weight:bold;">Directions:</label>
                         </div>
-                        @foreach (var d in ViewBag.Directions)
+                        @if (ViewBag.Directions.Count == 0)
                         {
+                            <div id="DirectionView0" class="row">
+                            <label class="col-lg-1 col-md-1 col-sm-1">Step <span class="directionCount">1</span>:</label>
+                            <textarea name="RecipeDirection" id="DirectionsTextArea" class="col-lg-5 col-md-5 col-sm-12" rows="2" cols="10" placeholder="Input directions"></textarea> &nbsp;
+                            <button id="DirectionRemoveBtnID0" type="button" class="genric-btn danger-border RemoveDirection">Remove</button> &nbsp;
+                            <button id="DirectionAddBtnID0" type="button" class="genric-btn success-border AddDirection">Add</button>
+                        </div>
+                        }
+                        else
+                        {
+                            foreach (var d in ViewBag.Directions)
+                            {
                             <div id="DirectionView0" class="row">
                                 <label class="col-lg-1 col-md-1 col-sm-1">Step <span class="directionCount">@d.Direction.DirectionStep</span>:</label>
                                 <textarea name="RecipeDirection" id="DirectionsTextArea" class="col-lg-5 col-md-5 col-sm-12" rows="2" cols="10" placeholder="Input directions">@d.Direction.DirectionDescription</textarea> &nbsp;
@@ -83,6 +123,7 @@
                                 <button id="DirectionAddBtnID0" type="button" class="genric-btn success-border AddDirection">Add</button>
                             </div>
 
+                            }
                         }
                         <div id="directionTemplate"></div>
                     </div>
@@ -100,27 +141,39 @@
                         </div>
                         <div class="row">
                             @{
-                                foreach (var rts in RecipeTagsService.Tags)
-                                {
-                                    foreach (var tag in ViewBag.Tags)
+                                if (ViewBag.Tags.Count == 0)
+                                {                           
+                                    foreach (var t in RecipeTagsService.Tags)
                                     {
-                                        if (tag.Tag.TagName == rts)
+                                        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                                        <div class="col-lg-2 col-md-6 col-sm-12">
+                                            <label> @t</label>
+                                            <input name="@t" class="checkbox-primary input" type="checkbox">
+                                        </div>
+                                    }                            
+                                }
+                                else
+                                {
+                                    foreach (var rts in RecipeTagsService.Tags)
+                                    {
+                                        foreach (var tag in ViewBag.Tags)
                                         {
-                                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                                            <div class="col-lg-2 col-md-6 col-sm-12">
-                                                <label> @rts</label>
-                                                <input checked name="@rts" class="checkbox-primary input" type="checkbox">
-                                            </div>
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
-                                            <div class="col-lg-2 col-md-6 col-sm-12">
-                                                <label> @rts</label>
-                                                <input name="@rts" class="checkbox-primary input" type="checkbox">
-                                            </div>
-                                            break;
+                                            if (tag.Tag.TagName == rts)
+                                            {
+                                                <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                                                <div class="col-lg-2 col-md-6 col-sm-12">
+                                                    <label> @rts</label>
+                                                    <input checked name="@rts" class="checkbox-primary input" type="checkbox">
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                                                <div class="col-lg-2 col-md-6 col-sm-12">
+                                                    <label> @rts</label>
+                                                    <input name="@rts" class="checkbox-primary input" type="checkbox">
+                                                </div>
+                                            }
                                         }
                                     }
                                 }
