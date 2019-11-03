@@ -6,19 +6,20 @@
 <head>
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="~/img/fav.png">
-    <!-- Author Meta -->
-    <meta name="author" content="CodePixar">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
     <title>@ViewData["Title"] </title>
-
+    !--====================== CSS and Scripts ======================= -->
+    <link rel="stylesheet" type="text/css" href="~/DataTables/datatables.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/recipe.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i|Roboto:400,500" rel="stylesheet">
     <!--
             CSS
@@ -37,46 +38,25 @@
 
 <body>
     <!--================ Start Header Area =================-->
-    <header class="header-area">
-        <div class="container">
-            <div class="header-wrap">
-                <div class="header-top d-flex justify-content-between align-items-center navbar-expand-md">
-                    <div class="col menu-left">
-                        <a class="active" asp-controller="Home" asp-action="Index">Home</a>
-                        <a asp-controller="Home" asp-action="About">About</a>
-                    </div>
-                    <div class="col-3 logo">
-                        <a asp-controller="Home" asp-action="Index"><img class="mx-auto" src="img/logo2.png" alt=""></a>
-                    </div>
-                    <nav class="col navbar navbar-expand-md justify-content-end">
-
-                        <!-- Toggler/collapsibe Button -->
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                            <span class="lnr lnr-menu"></span>
-                        </button>
-
-                        <!-- Navbar links -->
-                        <div class="collapse navbar-collapse menu-right" id="collapsibleNavbar">
-                            <ul class="navbar-nav justify-content-center w-100">
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Recipe" asp-action="Recipes">Recipes</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Home" asp-action="Ingredients" class="nav-link">Ingredients</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="List" asp-action="List" class="nav-link">My List</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+    <div class="fixed-top navigationPane">
+        <nav class="navbar navbar-expand-md">
+            <div class="col-lg-5 col-md-5 col-sm-4 menu-items">
+                <a class="navbar-brand link" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="About">About</a>
+                <a class="navbar-brand" href="#">Misc.</a>
             </div>
-        </div>
-    </header>
+            <div clas="col-lg-2 col-md-2 col-sm-2 logo">
+                <img id="pandaPic" src="~/img/panda.jpg" alt="Panda picture" />
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5 menu-items">
+                <a class="navbar-brand" asp-controller="Recipe" asp-action="Recipes">Recipes</a>
+                <a class="navbar-brand" asp-controller="Home"   asp-action="Ingredients">Ingredients</a>
+                <a class="navbar-brand" asp-controller="List"   asp-action="List">My List</a>
+            </div>
+        </nav>
+    </div> 
     <!--================ End Header Area =================-->
     <!--================ Start render body =================-->
-    <div class="container">
         <main role="main" class="pb-3">
             <div id='cssmenu'>
                 <ul>
@@ -98,14 +78,10 @@
             </div>
             @RenderBody()
         </main>
-    </div>
     <!--================ End render body=================-->
     <!--================ Start Footer Area =================-->
-    <footer style="bottom:0; position:fixed; width:100%;" class="footer-area">
-        <p class="footer-text m-0 col-lg-6 col-md-12">
-            Copyright © 2018 All rights reserved | This template is made with
-            <span class="lnr lnr-heart"></span> by <a>Colorlib</a>
-        </p>
+    <footer>
+        <p class="footer-text m-0 col-lg-12 col-md-12 col-sm-12"><i>Pandalicious &#169; 2019</i></p>
     </footer>
     <!--================ End Footer Area =================-->
 

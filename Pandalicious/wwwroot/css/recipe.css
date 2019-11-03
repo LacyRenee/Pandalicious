@@ -78,43 +78,19 @@ footer {
     padding: 5px;
 }
 
-
 /***************************************************************************/
-/*                          ABOUT PAGE STYLING                             */
+/*                          RECIPE PAGE STYLING                            */
 /***************************************************************************/
-
-.containerAbout {
-    margin-left: 25px;
-    position: relative;
-    margin-top: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    color: #FFFEF2;
-    font-size: 18px;
+.recipesPage{
+    border: 2px solid red;
+    float: right;
+    width: 87%;
+    padding-top: 3%;
 }
 
-#aboutMe {
-    color: #FFFEF2;
-}
-
-#authorPic {
-    width: 70%;
-    border-radius: 8px;
-    border: 8px solid #FFFEF2;
-    margin-top: 22%;
-    
-}
-
-/***************************************************************************/
-/*                        INGREDIENT PAGE STYLING                          */
-/***************************************************************************/
-
-.ingredientTable{
-    background-color: #FFFEF2;
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 5%;
-    padding: 20px;
+#sidebar {
+    background-color: white;
+    padding-top: 5px;
+    width: 20%;
+    margin-left: 2%;
 }

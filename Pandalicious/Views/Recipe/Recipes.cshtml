@@ -5,31 +5,35 @@
 }
 
 <div class="recipesPage">
-    <div class="row height ml-10">
-        <h3 class="mb-10 center">List of All Recipes</h3>
-    </div>
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 ">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 DataTableForAllRecipes">
-                    <a asp-controller="Recipe" asp-action="NewRecipe" class="genric-btn primary-border small circle">Add Recipe</a>
+                <div id="sidebar">
+                    <div class="row height ml-10">
+                        <h3 class="mb-10 center">List of All Recipes</h3>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 DataTableForAllRecipes">
+                        <a asp-controller="Recipe" asp-action="NewRecipe" class="genric-btn primary-border small circle">Add Recipe</a>
 
-                    <table id="AllRecipeTable" class="table-bordered table-striped">
-                        <thead>
-                            <tr class="table-row">
-                                <th>Recipe Name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var r in ViewBag.AllRecipes)
-                            {
+                        <table id="AllRecipeTable" class="table-bordered table-striped">
+                            <thead>
                                 <tr class="table-row">
-                                    <td><a class="ListOfRecipes" data-recipeID="@r.RecipeId">@r.RecipeName</a></td>
+                                    <th>Recipe Name</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @foreach (var r in ViewBag.AllRecipes)
+                                {
+                                    <tr class="table-row">
+                                        <td><a class="ListOfRecipes" data-recipeID="@r.RecipeId">@r.RecipeName</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>"
+
                 <div class="col-lg-9 col-md-9 col-sm-9" id="DisplaySideRecipe">
 
                 </div>

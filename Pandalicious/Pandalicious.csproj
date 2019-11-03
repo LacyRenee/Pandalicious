@@ -158,7 +158,6 @@
     <None Include="wwwroot\img\.DS_Store" />
     <None Include="wwwroot\img\logo2.png" />
     <None Include="wwwroot\img\profile.jpeg" />
-    <None Include="wwwroot\img\right-arrow.png" />
     <None Include="wwwroot\img\blog\.DS_Store" />
     <None Include="wwwroot\img\elements\.DS_Store" />
     <None Include="wwwroot\img\elements\disabled-check.png" />
