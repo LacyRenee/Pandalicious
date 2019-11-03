@@ -113,6 +113,8 @@
     <Content Remove="wwwroot\img\fav.png" />
     <Content Remove="wwwroot\img\Resources.resx" />
     <Content Remove="wwwroot\img\elements\view-menu-bg.png" />
+    <Content Remove="wwwroot\img\bamboo-original.jpeg" />
+    <Content Remove="wwwroot\img\bamboo-original.jpeg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\css\.DS_Store" />

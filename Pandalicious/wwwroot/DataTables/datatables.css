@@ -69,6 +69,10 @@ table.dataTable thead .sorting_asc_disabled {
 table.dataTable thead .sorting_desc_disabled {
   background-image: url("DataTables-1.10.18/images/sort_desc_disabled.png");
 }
+table.dataTable thead tr {
+    background-color: darkred;
+    color: #FFFEF2;
+}
 table.dataTable tbody tr {
   background-color: #ffffff;
 }

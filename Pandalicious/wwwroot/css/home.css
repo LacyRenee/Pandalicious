@@ -100,3 +100,18 @@ footer {
     border: 8px solid #FFFEF2;
     
 }
+
+/***************************************************************************/
+/*                        INGREDIENT PAGE STYLING                          */
+/***************************************************************************/
+
+.ingredientTable{
+    background-color: #FFFEF2;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    padding: 20px;
+}
+
+#ingredientTableTh{
+}
