@@ -85,3 +85,4 @@
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Pandalicious.pdb
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Pandalicious.csproj.CopyComplete
 /Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Pandalicious.csprojAssemblyReference.cache
+/Users/ltesdall/Documents/GitHub/Pandalicious/Pandalicious/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LayoutHome.cshtml.g.cs

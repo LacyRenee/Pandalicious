@@ -1,0 +1,102 @@
+﻿/***************************************************************************/
+/*                          INDEX PAGE STYLING                             */
+/***************************************************************************/
+
+/* Styles the page background */
+body {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.95;
+    background-image: url('../img/bamboo2.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Sets the height of the navigation bar */
+nav {
+    height: 60px;
+    background-color: #FFFEF2;
+    color: white;
+}
+
+/* Positions the menu items a set percentage from the left */
+.menu-items {
+    margin-left: 5%;
+}
+
+/* Spaces the menu items evenly throughout the navbar */
+.navbar-brand {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    color: #4d0000;
+}
+
+    /* Changes the background color of the menu item hovered */
+    .navbar-brand:hover {
+        background-color: white;
+    }
+
+/* Centers the panda picture in the navbar */
+#pandaPic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+}
+
+div.container {
+    text-align: center;
+    margin-top: 15%;
+}
+
+/* Spreading the world with panda happiness */
+#quote {
+    font-size: 90px;
+    letter-spacing: 3px;
+    font-family: 'Great Vibes', cursive;
+    color: #4d0000;
+    text-shadow: 3px 1px black; /* lighter green: #ACAF87; darker green: #001308 */
+}
+
+/* Styling for the footer */
+footer {
+    background-color: #FFFEF2;
+    height: 5%;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    color: #4d0000;
+    padding: 5px;
+}
+
+
+/***************************************************************************/
+/*                          ABOUT PAGE STYLING                             */
+/***************************************************************************/
+
+.containerAbout {
+    margin-left: 25px;
+    position: relative;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    color: #FFFEF2;
+    font-size: 18px;
+}
+
+#authorPic {
+    width: 70%;
+    border-radius: 8px;
+    border: 8px solid #FFFEF2;
+    
+}
